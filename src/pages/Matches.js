@@ -106,19 +106,19 @@ export default function Matches() {
                                     </div>
                                     <div className="flex-none text-center w-1/3 uppercase">
                                         {match.status === "IN_PLAY" ? (
-                                            <span className="block text-green-500 font-bold">
+                                            <span className="block text-green-500 font-bold text-sm">
                                                 Playing
                                             </span>
                                         ) : match.status === "TIMED" ? (
-                                            <span className="block text-yellow-500 font-bold">
+                                            <span className="block text-yellow-500 font-bold text-sm">
                                                 Scheduled
                                             </span>
                                         ) : match.status === "FINISHED" ? (
-                                            <span className="block text-blue-500 font-bold">
+                                            <span className="block text-blue-500 font-bold text-sm">
                                                 Finished
                                             </span>
                                         ) : (
-                                            <span className="block text-red-500 font-bold">
+                                            <span className="block text-red-500 font-bold text-sm">
                                                 Postponed
                                             </span>
                                         )}
