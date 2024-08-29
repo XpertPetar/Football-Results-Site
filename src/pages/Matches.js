@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiKey, apiUrl, prem, champ } from "../Global";
+import { apiKey, apiUrl, prem, champ, corsProxyUrl } from "../Global";
 import "../App.css";
 import { format, addDays, subDays } from "date-fns";
 
@@ -14,18 +14,11 @@ export default function Matches() {
     const [dayAfterDate, setDayAfterDate] = useState(format(addDays(date, 1), "yyyy-MM-dd"));
 
     useEffect(() => {
-        const corsProxy = "https://cors-anywhere.herokuapp.com/"; // works but limit
-        const corsProxy2 = "https://corsproxy.io/?";
-        const corsProxy3 = "https://crossorigin.me/";
-        const corsProxy4 = "https://test.cors.workers.dev/?";
-        const url2 = "https://corsproxy.io/?" + encodeURIComponent("apiUrl");
-
-        const url = apiUrl + `/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
-        fetch(`${url}`, {
-            method: "GET",
-            headers: {
-                "X-Auth-Token": apiKey
-            }
+        console.log(date, dayAfterDate);
+        const urlCors = `${corsProxyUrl}api/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
+        const url = `${apiUrl}matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
+        fetch(`${urlCors}`, {
+            method: "GET"
         })
             .then((response) => {
                 console.log(response.status);
@@ -37,13 +30,13 @@ export default function Matches() {
                 setMatches(data.matches);
             })
             .catch((error) => console.error("Fetch error:", error));
-    }, [date]);
+    }, [date, dayAfterDate, dayBeforeDate]);
 
-    function updateDate(date) {
-        setDate(date);
-        setEuDate(format(date, "dd MMMM"));
-        setDayBeforeDate(format(subDays(date, 1), "yyyy-MM-dd"));
-        setDayAfterDate(format(addDays(date, 1), "yyyy-MM-dd"));
+    function updateDate(newDate) {
+        setDate(newDate);
+        setDayBeforeDate(format(subDays(newDate, 1), "yyyy-MM-dd"));
+        setDayAfterDate(format(addDays(newDate, 1), "yyyy-MM-dd"));
+        setEuDate(format(newDate, "dd MMMM"));
     }
 
     useEffect(() => {
@@ -54,7 +47,7 @@ export default function Matches() {
     return (
         <div className="mb-5 mx-auto w-full">
             <div className="mb-5 w-full">
-                <h1 className="text-center text-2xl font-bold my-4">Matches{" " + euDate}</h1>
+                <h1 className="text-center text-2xl font-bold my-8">Matches{" " + euDate}</h1>
                 {data && (
                     <div className="flex justify-center my-5">
                         {/* <img
@@ -111,8 +104,26 @@ export default function Matches() {
                                                 : match.homeTeam.name}
                                         </span>
                                     </div>
-                                    <div className="flex-none text-center w-1/3">
-                                        <span className="border-b-2 border-indigo-500">
+                                    <div className="flex-none text-center w-1/3 uppercase">
+                                        {match.status === "IN_PLAY" ? (
+                                            <span className="block text-green-500 font-bold">
+                                                Playing
+                                            </span>
+                                        ) : match.status === "TIMED" ? (
+                                            <span className="block text-yellow-500 font-bold">
+                                                Scheduled
+                                            </span>
+                                        ) : match.status === "FINISHED" ? (
+                                            <span className="block text-blue-500 font-bold">
+                                                Finished
+                                            </span>
+                                        ) : (
+                                            <span className="block text-red-500 font-bold">
+                                                Postponed
+                                            </span>
+                                        )}
+
+                                        <span className="block border-b-2 border-indigo-500 w-fit mx-auto">
                                             {match.score.fullTime.home !== null &&
                                             match.score.fullTime.away !== null ? (
                                                 <span>
