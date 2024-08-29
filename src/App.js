@@ -8,6 +8,7 @@ import Competition from "./pages/Competition";
 import Login from "./pages/Login";
 import { AuthProvider } from "./contexts/authContext";
 import Register from "./pages/Register";
+import Team from "./pages/Team";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                             ></Route>
                             <Route path="/login" element={<Login></Login>}></Route>
                             <Route path="/register" element={<Register></Register>}></Route>
+                            <Route path="/team/:id" element={<Team></Team>}></Route>
                         </Routes>
                     </Header>
                 </BrowserRouter>

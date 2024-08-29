@@ -48,7 +48,7 @@ export default function Login() {
                             {error}
                         </div>
                     )}
-                    <div className="border-2 border-slate-400 bg-slate-200 p-6 rounded">
+                    <div className="border-2 border-slate-400 bg-slate-200 p-12 rounded">
                         <form onSubmit={onSubmit}>
                             <h3 className="font-bold text-lg">Login</h3>
 

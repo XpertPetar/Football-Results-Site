@@ -1,6 +1,7 @@
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { apiUrl, apiKey, corsProxyUrl } from "../Global";
+import { Link } from "react-router-dom";
 
 export default function Competition() {
     const [competition, setCompetition] = useState();
@@ -37,14 +38,30 @@ export default function Competition() {
                     <tr>
                         <th className="py-3 px-4 text-left">Position</th>
                         <th className="py-3 px-4 text-left">Team</th>
-                        <th className="py-3 px-4 text-left">P</th>
-                        <th className="py-3 px-4 text-left">W</th>
-                        <th className="py-3 px-4 text-left">D</th>
-                        <th className="py-3 px-4 text-left">L</th>
-                        <th className="py-3 px-4 text-left">GF</th>
-                        <th className="py-3 px-4 text-left">GA</th>
-                        <th className="py-3 px-4 text-left">GD</th>
-                        <th className="py-3 px-4 text-left">Pts</th>
+                        <th className="py-3 px-4 text-left" title="Played">
+                            P
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Wins">
+                            W
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Draws">
+                            D
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Losses">
+                            L
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Goals For">
+                            GF
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Goals Against">
+                            GA
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Goal Difference">
+                            GD
+                        </th>
+                        <th className="py-3 px-4 text-left" title="Points">
+                            Pts
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,13 +74,15 @@ export default function Competition() {
                                 <td className="py-3 px-4 text-base text-gray-600 font-bold pl-10">
                                     {idx + 1}
                                 </td>
-                                <td className="py-3 px-4 text-sm text-gray-600">
-                                    <img
-                                        src={team.team.crest}
-                                        className="inline-block w-8 h-8 mr-5"
-                                    ></img>{" "}
-                                    {team.team.name}
-                                </td>
+                                <Link to={`/team/${team.team.id}`}>
+                                    <td className="py-3 px-4 text-sm text-gray-600">
+                                        <img
+                                            src={team.team.crest}
+                                            className="inline-block w-8 h-8 mr-5"
+                                        ></img>{" "}
+                                        {team.team.name}
+                                    </td>
+                                </Link>
                                 <td className="py-3 px-4 text-sm text-gray-600">
                                     {team.playedGames}
                                 </td>
@@ -77,7 +96,9 @@ export default function Competition() {
                                 <td className="py-3 px-4 text-sm text-gray-600">
                                     {team.goalDifference}
                                 </td>
-                                <td className="py-3 px-4 text-sm text-gray-600">{team.points}</td>
+                                <td className="py-3 px-4 text-sm text-gray-600 font-bold">
+                                    {team.points}
+                                </td>
                             </tr>
                         );
                     })}

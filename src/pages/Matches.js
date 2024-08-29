@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { apiKey, apiUrl, prem, champ, corsProxyUrl } from "../Global";
 import "../App.css";
 import { format, addDays, subDays } from "date-fns";
+import { Link } from "react-router-dom";
 
 export default function Matches() {
     const [matches, setMatches] = useState();
@@ -92,18 +93,20 @@ export default function Matches() {
                                     key={match.id}
                                     className="h-20 p-5 mb-2 bg-gray-100 rounded flex items-center justify-between"
                                 >
-                                    <div className="flex items-center flex-1 text-left ml-5 max-w-1/3">
-                                        <img
-                                            src={match.homeTeam.crest}
-                                            alt="homeTeamLogo"
-                                            className="w-8 h-8 mr-5"
-                                        />
-                                        <span className="">
-                                            {window.innerWidth < 1200
-                                                ? match.homeTeam.shortName
-                                                : match.homeTeam.name}
-                                        </span>
-                                    </div>
+                                    <Link to={`/team/${match.homeTeam.id}`}>
+                                        <div className="flex items-center flex-1 text-left ml-5 max-w-1/3">
+                                            <img
+                                                src={match.homeTeam.crest}
+                                                alt="homeTeamLogo"
+                                                className="w-8 h-8 mr-5"
+                                            />
+                                            <span className="">
+                                                {window.innerWidth < 1200
+                                                    ? match.homeTeam.shortName
+                                                    : match.homeTeam.name}
+                                            </span>
+                                        </div>
+                                    </Link>
                                     <div className="flex-none text-center w-1/3 uppercase">
                                         {match.status === "IN_PLAY" ? (
                                             <span className="block text-green-500 font-bold text-sm">
@@ -117,9 +120,13 @@ export default function Matches() {
                                             <span className="block text-blue-500 font-bold text-sm">
                                                 Finished
                                             </span>
-                                        ) : (
+                                        ) : match.status === "POSTPONED" ? (
                                             <span className="block text-red-500 font-bold text-sm">
                                                 Postponed
+                                            </span>
+                                        ) : (
+                                            <span className="block text-green-500 font-bold text-sm">
+                                                Playing
                                             </span>
                                         )}
 
@@ -136,18 +143,21 @@ export default function Matches() {
                                             )}
                                         </span>
                                     </div>
-                                    <div className="flex items-center flex-1 flex-row-reverse text-right mr-5 max-w-1/3">
-                                        <span className="order-1">
-                                            {window.innerWidth < 1200
-                                                ? match.awayTeam.shortName
-                                                : match.awayTeam.name}
-                                        </span>
-                                        <img
-                                            src={match.awayTeam.crest}
-                                            alt="awayTeamLogo"
-                                            className="w-8 h-8 ml-5"
-                                        />
-                                    </div>
+
+                                    <Link to={`/team/${match.awayTeam.id}`}>
+                                        <div className="flex items-center flex-1 flex-row-reverse text-right mr-5 max-w-1/3">
+                                            <span className="order-1">
+                                                {window.innerWidth < 1200
+                                                    ? match.awayTeam.shortName
+                                                    : match.awayTeam.name}
+                                            </span>
+                                            <img
+                                                src={match.awayTeam.crest}
+                                                alt="awayTeamLogo"
+                                                className="w-8 h-8 ml-5"
+                                            />
+                                        </div>
+                                    </Link>
                                 </li>
                             ))
                         ) : (
