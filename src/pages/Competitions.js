@@ -39,7 +39,7 @@ export default function Competitions() {
                                   key={competition.id}
                                   className="cursor-pointer"
                               >
-                                  <div className="w-80 p-4 bg-gray-100 rounded-md">
+                                  <div className="w-80 p-4 bg-blue-50 rounded-md">
                                       <h2 className="text-lg font-semibold">{competition.name}</h2>
                                       <img
                                           src={competition.emblem}

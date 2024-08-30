@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchDropdown from "./SearchDropdown.js";
 import { useNavigate } from "react-router-dom";
+import { competitionsDictionary, teamsDictionary } from "../Global.js";
 
 export default function Search() {
     const [input, setInput] = useState("");
@@ -8,7 +9,34 @@ export default function Search() {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        navigate(`/${searchFilter}/${input}`);
+        if (searchFilter === "competitions") {
+            // Find the competition that includes the search input as a substring
+            const competition = Object.keys(competitionsDictionary).find((name) =>
+                name.toLowerCase().includes(input.toLowerCase())
+            );
+
+            if (competition) {
+                // Get the ID of the matched competition
+                const competitionId = competitionsDictionary[competition];
+                navigate(`/${searchFilter}/${competitionId}?name=${competition}`);
+            } else {
+                console.log("Competition not found");
+                // Optionally handle the case where no competition is found
+            }
+        } else if (searchFilter === "team") {
+            const team = Object.keys(teamsDictionary).find((name) =>
+                name.toLowerCase().includes(input.toLowerCase())
+            );
+
+            if (team) {
+                // Get the ID of the matched competition
+                const teamId = teamsDictionary[team];
+                navigate(`/${searchFilter}/${teamId}`);
+            } else {
+                console.log("Team not found");
+                // Optionally handle the case where no competition is found
+            }
+        }
     };
 
     function updateSearchFilter(newValue) {
@@ -17,7 +45,7 @@ export default function Search() {
 
     useEffect(() => {
         console.log("in search: ", searchFilter);
-        if (input != "") handleSubmit();
+        if (input !== "") handleSubmit();
     }, [searchFilter]);
 
     return (
@@ -39,7 +67,7 @@ export default function Search() {
                             }}
                             type="search"
                             id="search"
-                            className="block p-2.5 w-full z-20 text-sm text-gray-800 bg-gray-100 rounded-e-lg focus:!border-purple-500 focus:!ring-purple-500 focus:bg-gray-200 placeholder-gray-800"
+                            className="block p-2.5 w-full z-20 text-sm text-gray-800 bg-white rounded-e-lg focus:!border-purple-500 focus:!ring-purple-500 focus:bg-gray-200 placeholder-gray-800"
                             placeholder="Search"
                             required
                         />

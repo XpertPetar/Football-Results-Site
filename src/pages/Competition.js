@@ -33,11 +33,13 @@ export default function Competition() {
     return (
         <>
             <h1 className="text-center text-2xl font-bold my-8">{leagueName}</h1>
-            <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow-md">
+            <table className="w-full bg-white border border-gray-300 rounded-lg shadow-md">
                 <thead className="bg-slate-700 text-white text-sm font-semibold">
                     <tr>
-                        <th className="py-3 px-4 text-left">Position</th>
-                        <th className="py-3 px-4 text-left">Team</th>
+                        <th className="py-3 px-4 text-left" title="Position">
+                            Pos.
+                        </th>
+                        <th className="py-3 px-4 text-left lg:text-left">Team</th>
                         <th className="py-3 px-4 text-left" title="Played">
                             P
                         </th>
@@ -72,11 +74,8 @@ export default function Competition() {
                 </thead>
                 <tbody>
                     {teams?.map((team, idx) => (
-                        <tr
-                            key={idx + 1}
-                            className={idx % 2 === 0 ? "bg-slate-200" : "bg-slate-50"}
-                        >
-                            <td className="py-3 px-4 text-base text-gray-600 font-bold pl-10">
+                        <tr key={idx + 1} className={idx % 2 === 0 ? "bg-blue-50" : "bg-white"}>
+                            <td className="py-3 px-4 text-base text-gray-600 font-bold">
                                 {idx + 1 + "."}
                             </td>
                             <Link to={`/team/${team.team.id}`}>
@@ -86,9 +85,15 @@ export default function Competition() {
                                         className="inline-block w-8 h-8 mr-5"
                                         alt={`${team.team.name} crest`}
                                     />{" "}
-                                    {window.innerWidth < 1200
-                                        ? team.team.shortName
-                                        : team.team.name}
+                                    {window.innerWidth < 1200 ? (
+                                        <span className="text-center">
+                                            {" "}
+                                            <br></br>
+                                            {team.team.shortName}
+                                        </span>
+                                    ) : (
+                                        team.team.name
+                                    )}
                                 </td>
                             </Link>
                             <td className="py-3 px-4 text-sm text-gray-600">{team.playedGames}</td>

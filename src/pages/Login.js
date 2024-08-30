@@ -82,7 +82,7 @@ export default function Login() {
                                 ></input>
                             </div>
                             <div className="border-t border-slate-400">
-                                <button className="mt-4 mb-2 text-white bg-slate-700 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 rounded-lg text-sm w-full py-2.5 px-4 text-center items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/70 me-2 mb-2 font-bold">
+                                <button className="mt-4 mb-2 text-white bg-indigo-500 hover:bg-indigo-400 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 rounded-lg text-sm w-full py-2.5 px-4 text-center items-center dark:focus:ring-[#050708]/50 me-2 mb-2 font-bold">
                                     Login
                                 </button>
                             </div>

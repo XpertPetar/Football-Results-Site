@@ -33,7 +33,7 @@ export default function SearchDropdown(props) {
                     onClick={toggleShow}
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="dropdown"
-                    className="max-w-28 min-w-28 flex-shrink-0 z-10 items-center py-2.5 px-3 text-sm font-medium text-center text-gray-600 bg-gray-300 rounded-tl-md hover:bg-gray-400 focus:outline-none dark:bg-gray-400 dark:hover:bg-gray-500 dark:text-white dark:border-gray-950"
+                    className="max-w-28 min-w-32 flex-shrink-0 z-10 items-center py-2.5 px-3 text-sm font-medium text-center text-white bg-gray-400 hover:bg-gray-500 rounded-tl-md focus:outline-none"
                     type="button"
                 >
                     {category}{" "}
@@ -55,58 +55,51 @@ export default function SearchDropdown(props) {
                 </button>
 
                 {show ? (
-                    <div
-                        id="dropdown"
-                        className="absolute z-10 divide-y divide-gray-100 rounded-sm shadow w-44"
-                    >
+                    <div id="dropdown" className="absolute z-10 shadow w-44">
                         <ul
-                            className="px-0 m-0 text-sm text-gray-700"
+                            className="px-0 m-0 text-sm text-white"
                             aria-labelledby="dropdownDefaultButton"
                         >
-                            <div className="p-2 bg-gray-400">
-                                <div>
-                                    <li>
-                                        <a
-                                            onClick={() => {
-                                                setCategory("Team");
-                                                props.updateSearchFilter("team");
-                                                toggleShow();
-                                            }}
-                                            href="#"
-                                            className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
-                                        >
-                                            Team
-                                        </a>
-                                    </li>
-                                </div>
-                                <div>
-                                    <li>
-                                        <a
-                                            onClick={() => {
-                                                setCategory("League");
-                                                props.updateSearchFilter("competitions");
-                                                toggleShow();
-                                            }}
-                                            href="#"
-                                            className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
-                                        >
-                                            League
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            onClick={() => {
-                                                setCategory("Player");
-                                                props.updateSearchFilter("player");
-                                                toggleShow();
-                                            }}
-                                            href="#"
-                                            className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
-                                        >
-                                            Player
-                                        </a>
-                                    </li>
-                                </div>
+                            <div className="p-2 bg-gray-400 divide-y divide-gray-500 rounded-sm">
+                                <li>
+                                    <a
+                                        onClick={() => {
+                                            setCategory("Team");
+                                            props.updateSearchFilter("team");
+                                            toggleShow();
+                                        }}
+                                        href="#"
+                                        className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-500 text-white no-underline text-left"
+                                    >
+                                        Team
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        onClick={() => {
+                                            setCategory("Competition");
+                                            props.updateSearchFilter("competitions");
+                                            toggleShow();
+                                        }}
+                                        href="#"
+                                        className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-500 text-white no-underline text-left"
+                                    >
+                                        Competition
+                                    </a>
+                                </li>
+                                {/* <li>
+                                    <a
+                                        onClick={() => {
+                                            setCategory("Player");
+                                            props.updateSearchFilter("player");
+                                            toggleShow();
+                                        }}
+                                        href="#"
+                                        className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-500 text-white no-underline text-left"
+                                    >
+                                        Player
+                                    </a>
+                                </li> */}
                             </div>
                         </ul>
                     </div>

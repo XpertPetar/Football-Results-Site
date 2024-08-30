@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { apiKey, apiUrl, prem, champ, corsProxyUrl } from "../Global";
+import { apiKey, apiUrl, corsProxyUrl } from "../Global";
 import "../App.css";
 import { format, addDays, subDays } from "date-fns";
 import { Link } from "react-router-dom";
@@ -101,7 +101,7 @@ export default function Matches() {
                             dummyMatches.map((match) => (
                                 <li
                                     key={match.id}
-                                    className="h-20 lg:p-5 mb-2 bg-gray-100 rounded flex items-center justify-between relative pulse-animation"
+                                    className="h-20 lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative pulse-animation"
                                 >
                                     <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md">
                                         <div className="w-8 h-8 bg-gray-300 rounded mr-5"></div>
@@ -122,7 +122,7 @@ export default function Matches() {
                             matches.map((match) => (
                                 <li
                                     key={match.id}
-                                    className="h-20 lg:p-5 mb-2 bg-gray-100 rounded flex items-center justify-between relative"
+                                    className="h-20 lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative"
                                 >
                                     <Link to={`/team/${match.homeTeam.id}`} className="z-50">
                                         <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">
