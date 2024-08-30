@@ -19,13 +19,13 @@ const Fixtures = ({ matches = [] }) => {
         const outcome = matchOutcome(match);
         switch (outcome) {
             case "win":
-                return "bg-green-200";
+                return "bg-green-200 bg-opacity-80";
             case "draw":
-                return "bg-yellow-200";
+                return "bg-yellow-200 bg-opacity-80";
             case "lost":
-                return "bg-red-200";
+                return "bg-red-200 bg-opacity-80";
             default:
-                return "bg-white";
+                return "bg-white bg-opacity-80";
         }
     }
 

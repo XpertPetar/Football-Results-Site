@@ -20,7 +20,12 @@ export default function Matches() {
         const urlCors = `${corsProxyUrl}api/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         const url = `${apiUrl}matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         fetch(`${urlCors}`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "X-Auth-Token": apiKey,
+                "X-Unfold-Lineups": true,
+                "X-Unfold-Goals": true
+            }
         })
             .then((response) => {
                 console.log(response.status);
@@ -101,7 +106,7 @@ export default function Matches() {
                             dummyMatches.map((match) => (
                                 <li
                                     key={match.id}
-                                    className="h-20 lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative pulse-animation"
+                                    className="h-20 lg:w-3/4 mx-auto lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative pulse-animation"
                                 >
                                     <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md">
                                         <div className="w-8 h-8 bg-gray-300 rounded mr-5"></div>
@@ -122,7 +127,7 @@ export default function Matches() {
                             matches.map((match) => (
                                 <li
                                     key={match.id}
-                                    className="h-20 lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative"
+                                    className="h-20 lg:w-3/4 mx-auto lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative"
                                 >
                                     <Link to={`/team/${match.homeTeam.id}`} className="z-50">
                                         <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">

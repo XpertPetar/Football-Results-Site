@@ -113,7 +113,7 @@ export default function Header(props) {
                                 to={item.href}
                                 className={({ isActive }) => {
                                     return (
-                                        "no-underline block rounded-md px-3 py-2 text-base font-medium " +
+                                        "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
                                         (isActive
                                             ? "bg-purple-800 text-white"
                                             : "text-gray-300 hover:bg-purple-800 hover:text-white")
