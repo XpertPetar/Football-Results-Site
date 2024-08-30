@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 import Calendar from "../components/Calendar";
 
 export default function Matches() {
-    const [matches, setMatches] = useState();
-    const [data, setData] = useState();
-    const [league, setLeague] = useState(prem);
-
+    const [matches, setMatches] = useState([]);
+    const [loading, setLoading] = useState(true); // Start with loading true
     const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
-    const [euDate, setEuDate] = useState(format(date, "dd MMMM"));
-    const [dayBeforeDate, setDayBeforeDate] = useState(format(subDays(date, 1), "yyyy-MM-dd"));
-    const [dayAfterDate, setDayAfterDate] = useState(format(addDays(date, 1), "yyyy-MM-dd"));
+    const [euDate, setEuDate] = useState(format(new Date(), "dd MMMM"));
+    const [dayBeforeDate, setDayBeforeDate] = useState(
+        format(subDays(new Date(), 1), "yyyy-MM-dd")
+    );
+    const [dayAfterDate, setDayAfterDate] = useState(format(addDays(new Date(), 1), "yyyy-MM-dd"));
 
     useEffect(() => {
-        console.log(date, dayAfterDate);
+        setLoading(true); // Set loading to true when fetching starts
         const urlCors = `${corsProxyUrl}api/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         const url = `${apiUrl}matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         fetch(`${urlCors}`, {
@@ -28,11 +28,14 @@ export default function Matches() {
             })
             .then((data) => {
                 console.log(data);
-                setData(data);
-                setMatches(data.matches);
+                setMatches(data.matches || []);
+                setLoading(false); // Set loading to false when data arrives
             })
-            .catch((error) => console.error("Fetch error:", error));
-    }, [date, dayAfterDate, dayBeforeDate]);
+            .catch((error) => {
+                console.error("Fetch error:", error);
+                setLoading(false); // Also stop loading if there is an error
+            });
+    }, [date, dayAfterDate]);
 
     function updateDate(newDate) {
         setDate(newDate);
@@ -41,10 +44,14 @@ export default function Matches() {
         setEuDate(format(newDate, "dd MMMM"));
     }
 
-    useEffect(() => {
-        console.log(matches);
-        console.log(typeof matches);
-    });
+    const dummyMatches = Array.from({ length: 5 }, (_, index) => ({
+        id: `dummy-${index}`,
+        homeTeam: { crest: "", shortName: "Home Team Name...", name: "Home Team Name..." },
+        awayTeam: { crest: "", shortName: "Away Team Name...", name: "Away Team Name..." },
+        status: "SCHEDULED",
+        score: { fullTime: { home: null, away: null } },
+        utcDate: new Date().toISOString()
+    }));
 
     return (
         <div className="mb-5 mx-auto w-full">
@@ -56,9 +63,9 @@ export default function Matches() {
                 <div className="flex justify-center">
                     <div className="my-5 mx-1">
                         <button
-                            onClick={() => {
-                                updateDate(dayBeforeDate);
-                            }}
+                            onClick={() =>
+                                updateDate(format(subDays(new Date(date), 1), "yyyy-MM-dd"))
+                            }
                             type="button"
                             className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
@@ -67,9 +74,7 @@ export default function Matches() {
                     </div>
                     <div className="my-5 mx-1">
                         <button
-                            onClick={() => {
-                                updateDate(format(new Date(), "yyyy-MM-dd"));
-                            }}
+                            onClick={() => updateDate(format(new Date(), "yyyy-MM-dd"))}
                             type="button"
                             className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
@@ -79,9 +84,9 @@ export default function Matches() {
 
                     <div className="my-5 mx-1">
                         <button
-                            onClick={() => {
-                                updateDate(dayAfterDate);
-                            }}
+                            onClick={() =>
+                                updateDate(format(addDays(new Date(date), 1), "yyyy-MM-dd"))
+                            }
                             type="button"
                             className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
@@ -92,14 +97,35 @@ export default function Matches() {
 
                 <div className="mx-auto w-full">
                     <ul className="list-none">
-                        {matches ? (
+                        {loading ? (
+                            dummyMatches.map((match) => (
+                                <li
+                                    key={match.id}
+                                    className="h-20 lg:p-5 mb-2 bg-gray-100 rounded flex items-center justify-between relative pulse-animation"
+                                >
+                                    <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md">
+                                        <div className="w-8 h-8 bg-gray-300 rounded mr-5"></div>
+                                    </div>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="text-center">
+                                            <span className="block text-gray-500 font-bold text-sm">
+                                                Loading...
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="flex items-center flex-1 flex-row-reverse text-right lg:mr-5 max-w-md">
+                                        <div className="w-8 h-8 bg-gray-300 rounded ml-5"></div>
+                                    </div>
+                                </li>
+                            ))
+                        ) : matches ? (
                             matches.map((match) => (
                                 <li
                                     key={match.id}
                                     className="h-20 lg:p-5 mb-2 bg-gray-100 rounded flex items-center justify-between relative"
                                 >
-                                    <Link to={`/team/${match.homeTeam.id}`}>
-                                        <div className="flex items-center flex-1 text-left ml-5 max-w-1/3 hover:text-blue-600 hover:underline underline-offset-2">
+                                    <Link to={`/team/${match.homeTeam.id}`} className="z-50">
+                                        <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">
                                             <img
                                                 src={match.homeTeam.crest}
                                                 alt="homeTeamLogo"
@@ -118,7 +144,8 @@ export default function Matches() {
                                                 <span className="block text-green-500 font-bold text-sm">
                                                     Playing
                                                 </span>
-                                            ) : match.status === "TIMED" ? (
+                                            ) : match.status === "TIMED" ||
+                                              match.status === "SCHEDULED" ? (
                                                 <span className="block text-yellow-500 font-bold text-sm">
                                                     Scheduled
                                                 </span>
@@ -145,13 +172,19 @@ export default function Matches() {
                                                         {match.score.fullTime.away}
                                                     </span>
                                                 ) : (
-                                                    <span>{match.utcDate.substr(11, 5)}</span>
+                                                    <span>
+                                                        {(match.utcDate.substr(11, 5) === "00:00" &&
+                                                            match.status === "SCHEDULED") ||
+                                                        match.status === "POSTPONED"
+                                                            ? "N/A"
+                                                            : match.utcDate.substr(11, 5)}
+                                                    </span>
                                                 )}
                                             </span>
                                         </div>
                                     </div>
-                                    <Link to={`/team/${match.awayTeam.id}`}>
-                                        <div className="flex items-center flex-1 flex-row-reverse text-right mr-5 max-w-1/3 hover:text-blue-600 hover:underline underline-offset-2">
+                                    <Link to={`/team/${match.awayTeam.id}`} className="z-50">
+                                        <div className="flex items-center flex-1 flex-row-reverse text-right lg:mr-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">
                                             <span className="order-1 text-sm sm:text-base truncate md:whitespace-normal">
                                                 {window.innerWidth < 1200
                                                     ? match.awayTeam.shortName
@@ -167,7 +200,7 @@ export default function Matches() {
                                 </li>
                             ))
                         ) : (
-                            <p>Loading matches...</p>
+                            <p className="text-center text-lg text-gray-500">No matches found.</p>
                         )}
                     </ul>
                 </div>

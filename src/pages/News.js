@@ -66,10 +66,10 @@ export default function News() {
                 ) : (
                     <div className="w-full xl:w-2/3">
                         <a
-                            className="twitter-timeline"
+                            className="twitter-timeline flex justify-center pulse-animation"
                             href="https://twitter.com/FabrizioRomano?ref_src=twsrc%5Etfw"
                         >
-                            Tweets by FabrizioRomano
+                            Loading tweets from Fabrizio Romano...
                         </a>
                     </div>
                 )}

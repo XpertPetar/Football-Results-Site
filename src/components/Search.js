@@ -39,7 +39,7 @@ export default function Search() {
                             }}
                             type="search"
                             id="search"
-                            className="block p-2.5 w-full z-20 text-sm text-gray-800 bg-gray-100 rounded-e-md dark:focus:border-gray-200 dark:focus:bg-gray-200 dark:bg-gray-100 dark:placeholder-gray-800"
+                            className="block p-2.5 w-full z-20 text-sm text-gray-800 bg-gray-100 rounded-e-lg focus:!border-purple-500 focus:!ring-purple-500 focus:bg-gray-200 placeholder-gray-800"
                             placeholder="Search"
                             required
                         />
