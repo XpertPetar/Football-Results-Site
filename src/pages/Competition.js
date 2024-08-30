@@ -50,13 +50,19 @@ export default function Competition() {
                         <th className="py-3 px-4 text-left" title="Losses">
                             L
                         </th>
-                        <th className="py-3 px-4 text-left" title="Goals For">
+                        <th className="py-3 px-4 text-left hidden lg:table-cell" title="Goals For">
                             GF
                         </th>
-                        <th className="py-3 px-4 text-left" title="Goals Against">
+                        <th
+                            className="py-3 px-4 text-left hidden lg:table-cell"
+                            title="Goals Against"
+                        >
                             GA
                         </th>
-                        <th className="py-3 px-4 text-left" title="Goal Difference">
+                        <th
+                            className="py-3 px-4 text-left hidden lg:table-cell"
+                            title="Goal Difference"
+                        >
                             GD
                         </th>
                         <th className="py-3 px-4 text-left" title="Points">
@@ -65,43 +71,44 @@ export default function Competition() {
                     </tr>
                 </thead>
                 <tbody>
-                    {teams?.map((team, idx) => {
-                        return (
-                            <tr
-                                key={idx + 1}
-                                className={idx % 2 === 0 ? "bg-slate-200" : "bg-slate-50"}
-                            >
-                                <td className="py-3 px-4 text-base text-gray-600 font-bold pl-10">
-                                    {idx + 1 + "."}
+                    {teams?.map((team, idx) => (
+                        <tr
+                            key={idx + 1}
+                            className={idx % 2 === 0 ? "bg-slate-200" : "bg-slate-50"}
+                        >
+                            <td className="py-3 px-4 text-base text-gray-600 font-bold pl-10">
+                                {idx + 1 + "."}
+                            </td>
+                            <Link to={`/team/${team.team.id}`}>
+                                <td className="py-3 px-4 text-sm text-gray-600 hover:text-blue-600 hover:underline underline-offset-2">
+                                    <img
+                                        src={team.team.crest}
+                                        className="inline-block w-8 h-8 mr-5"
+                                        alt={`${team.team.name} crest`}
+                                    />{" "}
+                                    {window.innerWidth < 1200
+                                        ? team.team.shortName
+                                        : team.team.name}
                                 </td>
-                                <Link to={`/team/${team.team.id}`}>
-                                    <td className="py-3 px-4 text-sm text-gray-600 hover:text-blue-600 hover:underline underline-offset-2">
-                                        <img
-                                            src={team.team.crest}
-                                            className="inline-block w-8 h-8 mr-5"
-                                        ></img>{" "}
-                                        {team.team.name}
-                                    </td>
-                                </Link>
-                                <td className="py-3 px-4 text-sm text-gray-600">
-                                    {team.playedGames}
-                                </td>
-                                <td className="py-3 px-4 text-sm text-gray-600">{team.won}</td>
-                                <td className="py-3 px-4 text-sm text-gray-600">{team.draw}</td>
-                                <td className="py-3 px-4 text-sm text-gray-600">{team.lost}</td>
-                                <td className="py-3 px-4 text-sm text-gray-600">{team.goalsFor}</td>
-                                <td className="py-3 px-4 text-sm text-gray-600">
-                                    {team.goalsAgainst}
-                                </td>
-                                <td className="py-3 px-4 text-sm text-gray-600">
-                                    {team.goalDifference}
-                                </td>
-                                <td className="py-3 px-4 text-base text-gray-600 font-bold">
-                                    {team.points}
-                                </td>
-                            </tr>
-                        );
-                    })}
+                            </Link>
+                            <td className="py-3 px-4 text-sm text-gray-600">{team.playedGames}</td>
+                            <td className="py-3 px-4 text-sm text-gray-600">{team.won}</td>
+                            <td className="py-3 px-4 text-sm text-gray-600">{team.draw}</td>
+                            <td className="py-3 px-4 text-sm text-gray-600">{team.lost}</td>
+                            <td className="py-3 px-4 text-sm text-gray-600 hidden lg:table-cell">
+                                {team.goalsFor}
+                            </td>
+                            <td className="py-3 px-4 text-sm text-gray-600 hidden lg:table-cell">
+                                {team.goalsAgainst}
+                            </td>
+                            <td className="py-3 px-4 text-sm text-gray-600 hidden lg:table-cell">
+                                {team.goalDifference}
+                            </td>
+                            <td className="py-3 px-4 text-base text-gray-600 font-bold">
+                                {team.points}
+                            </td>
+                        </tr>
+                    ))}
                 </tbody>
             </table>
         </>

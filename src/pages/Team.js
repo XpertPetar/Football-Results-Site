@@ -37,11 +37,11 @@ export default function Team() {
                     <div className="flex justify-center">
                         <h1 className="text-2xl font-bold my-8 ml-2 inline-block">{team.name}</h1>
                     </div>
-                    <div className="flex gap-5 justify-between my-8 bg-gray-100 rounded-full py-8">
+                    <div className="flex gap-5 justify-between my-8 bg-gray-100 rounded-xl lg:rounded-full py-8">
                         <div className="w-1/2 p-5 inline-flex items-center justify-end">
                             <img src={team.crest} className="inline-block w-32 h-32"></img>
                         </div>
-                        <div className="w-1/2 border-l-2 border-slate-400 p-5">
+                        <div className="w-3/4 lg:w-1/2 border-l-2 border-slate-400 p-5">
                             <h3 className="text-xl font-bold mb-3">General Info</h3>
                             <div className="pl-2">
                                 <p className="inline-block my-2">Founded: &nbsp;{team.founded}</p>
@@ -102,7 +102,7 @@ export default function Team() {
                                 if (player.position) {
                                     return (
                                         <div
-                                            className={`flex justify-between items-center p-3 text-slate-800 ${
+                                            className={`flex gap-2 justify-between items-center p-3 text-slate-800 ${
                                                 idx % 2 === 0 ? "bg-slate-200" : "bg-slate-50"
                                             }`}
                                             key={player.id}

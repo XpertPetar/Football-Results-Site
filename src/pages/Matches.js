@@ -49,16 +49,6 @@ export default function Matches() {
         <div className="mb-5 mx-auto w-full">
             <div className="mb-5 w-full">
                 <h1 className="text-center text-2xl font-bold my-8">Matches{" " + euDate}</h1>
-                {data && (
-                    <div className="flex justify-center my-5">
-                        {/* <img
-                        src={data.competition.emblem}
-                        alt="Competition emblem"
-                        className="w-32 h-24"
-                    /> */}
-                    </div>
-                )}
-
                 <div className="flex justify-center">
                     <div className="my-5 mx-1">
                         <button
@@ -66,7 +56,7 @@ export default function Matches() {
                                 updateDate(dayBeforeDate);
                             }}
                             type="button"
-                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
                             Previous Day
                         </button>
@@ -77,7 +67,7 @@ export default function Matches() {
                                 updateDate(format(new Date(), "yyyy-MM-dd"));
                             }}
                             type="button"
-                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
                             Today
                         </button>
@@ -89,7 +79,7 @@ export default function Matches() {
                                 updateDate(dayAfterDate);
                             }}
                             type="button"
-                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
                             Next Day
                         </button>
