@@ -4,11 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function Search() {
     const [input, setInput] = useState("");
-    const [searchFilter, setSearchFilter] = useState("multi");
+    const [searchFilter, setSearchFilter] = useState("team");
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        navigate(`/results/${searchFilter}/${input}`);
+        navigate(`/${searchFilter}/${input}`);
     };
 
     function updateSearchFilter(newValue) {
@@ -39,7 +39,7 @@ export default function Search() {
                             }}
                             type="search"
                             id="search"
-                            className="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-100 rounded-e-md dark:focus:border-gray-200 dark:focus:bg-gray-200 dark:bg-gray-100 dark:placeholder-gray-800 dark:text-white border-s-2 border-s-gray-900"
+                            className="block p-2.5 w-full z-20 text-sm text-gray-800 bg-gray-100 rounded-e-md dark:focus:border-gray-200 dark:focus:bg-gray-200 dark:bg-gray-100 dark:placeholder-gray-800"
                             placeholder="Search"
                             required
                         />

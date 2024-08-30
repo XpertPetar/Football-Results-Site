@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function SearchDropdown(props) {
     const [show, setShow] = useState(false);
-    const [category, setCategory] = useState("All");
+    const [category, setCategory] = useState("Team");
     const dropdownRef = useRef(null);
 
     const toggleShow = () => {
@@ -63,19 +63,19 @@ export default function SearchDropdown(props) {
                             className="px-0 m-0 text-sm text-gray-700 dark:text-gray-200"
                             aria-labelledby="dropdownDefaultButton"
                         >
-                            <div className="divide divide-y divide-gray-700 p-2">
+                            <div className="divide divide-y divide-gray-600 p-2 bg-gray-400">
                                 <div>
                                     <li>
                                         <a
                                             onClick={() => {
-                                                setCategory("All");
-                                                props.updateSearchFilter("multi");
+                                                setCategory("Team");
+                                                props.updateSearchFilter("team");
                                                 toggleShow();
                                             }}
                                             href="#"
-                                            className="rounded-sm block px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
+                                            className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
                                         >
-                                            All
+                                            Team
                                         </a>
                                     </li>
                                 </div>
@@ -83,40 +83,27 @@ export default function SearchDropdown(props) {
                                     <li>
                                         <a
                                             onClick={() => {
-                                                setCategory("Movies");
-                                                props.updateSearchFilter("movie");
+                                                setCategory("League");
+                                                props.updateSearchFilter("competitions");
                                                 toggleShow();
                                             }}
                                             href="#"
-                                            className="rounded-sm block px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
+                                            className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
                                         >
-                                            Movies
+                                            League
                                         </a>
                                     </li>
                                     <li>
                                         <a
                                             onClick={() => {
-                                                setCategory("TV");
-                                                props.updateSearchFilter("tv");
+                                                setCategory("Player");
+                                                props.updateSearchFilter("player");
                                                 toggleShow();
                                             }}
                                             href="#"
-                                            className="rounded-sm block px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
+                                            className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
                                         >
-                                            TV
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            onClick={() => {
-                                                setCategory("People");
-                                                props.updateSearchFilter("person");
-                                                toggleShow();
-                                            }}
-                                            href="#"
-                                            className="rounded-sm block px-4 py-2.5 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-white no-underline"
-                                        >
-                                            People
+                                            Player
                                         </a>
                                     </li>
                                 </div>

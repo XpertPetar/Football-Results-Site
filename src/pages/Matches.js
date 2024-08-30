@@ -3,6 +3,7 @@ import { apiKey, apiUrl, prem, champ, corsProxyUrl } from "../Global";
 import "../App.css";
 import { format, addDays, subDays } from "date-fns";
 import { Link } from "react-router-dom";
+import Calendar from "../components/Calendar";
 
 export default function Matches() {
     const [matches, setMatches] = useState();
@@ -50,6 +51,9 @@ export default function Matches() {
             <div className="mb-5 w-full">
                 <h1 className="text-center text-2xl font-bold my-8">Matches{" " + euDate}</h1>
                 <div className="flex justify-center">
+                    <Calendar onDateChange={updateDate} selectedDate={date} />
+                </div>
+                <div className="flex justify-center">
                     <div className="my-5 mx-1">
                         <button
                             onClick={() => {
@@ -92,7 +96,7 @@ export default function Matches() {
                             matches.map((match) => (
                                 <li
                                     key={match.id}
-                                    className="h-20 p-5 mb-2 bg-gray-100 rounded flex items-center justify-between"
+                                    className="h-20 lg:p-5 mb-2 bg-gray-100 rounded flex items-center justify-between relative"
                                 >
                                     <Link to={`/team/${match.homeTeam.id}`}>
                                         <div className="flex items-center flex-1 text-left ml-5 max-w-1/3 hover:text-blue-600 hover:underline underline-offset-2">
@@ -101,53 +105,54 @@ export default function Matches() {
                                                 alt="homeTeamLogo"
                                                 className="w-8 h-8 mr-5"
                                             />
-                                            <span className="">
+                                            <span className="text-sm sm:text-base truncate md:whitespace-normal">
                                                 {window.innerWidth < 1200
                                                     ? match.homeTeam.shortName
                                                     : match.homeTeam.name}
                                             </span>
                                         </div>
                                     </Link>
-                                    <div className="flex-none text-center w-1/3 uppercase">
-                                        {match.status === "IN_PLAY" ? (
-                                            <span className="block text-green-500 font-bold text-sm">
-                                                Playing
-                                            </span>
-                                        ) : match.status === "TIMED" ? (
-                                            <span className="block text-yellow-500 font-bold text-sm">
-                                                Scheduled
-                                            </span>
-                                        ) : match.status === "FINISHED" ? (
-                                            <span className="block text-blue-500 font-bold text-sm">
-                                                Finished
-                                            </span>
-                                        ) : match.status === "POSTPONED" ? (
-                                            <span className="block text-red-500 font-bold text-sm">
-                                                Postponed
-                                            </span>
-                                        ) : (
-                                            <span className="block text-green-500 font-bold text-sm">
-                                                Playing
-                                            </span>
-                                        )}
-
-                                        <span className="block border-b-2 border-indigo-500 w-fit mx-auto">
-                                            {match.score.fullTime.home !== null &&
-                                            match.score.fullTime.away !== null ? (
-                                                <span>
-                                                    {match.score.fullTime.home}
-                                                    {" : "}
-                                                    {match.score.fullTime.away}
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="text-center">
+                                            {match.status === "IN_PLAY" ? (
+                                                <span className="block text-green-500 font-bold text-sm">
+                                                    Playing
+                                                </span>
+                                            ) : match.status === "TIMED" ? (
+                                                <span className="block text-yellow-500 font-bold text-sm">
+                                                    Scheduled
+                                                </span>
+                                            ) : match.status === "FINISHED" ? (
+                                                <span className="block text-blue-500 font-bold text-sm">
+                                                    Finished
+                                                </span>
+                                            ) : match.status === "POSTPONED" ? (
+                                                <span className="block text-red-500 font-bold text-sm">
+                                                    Postponed
                                                 </span>
                                             ) : (
-                                                <span>{match.utcDate.substr(11, 5)}</span>
+                                                <span className="block text-green-500 font-bold text-sm">
+                                                    Playing
+                                                </span>
                                             )}
-                                        </span>
-                                    </div>
 
+                                            <span className="block border-b-2 border-indigo-500 w-fit mx-auto">
+                                                {match.score.fullTime.home !== null &&
+                                                match.score.fullTime.away !== null ? (
+                                                    <span>
+                                                        {match.score.fullTime.home}
+                                                        {" : "}
+                                                        {match.score.fullTime.away}
+                                                    </span>
+                                                ) : (
+                                                    <span>{match.utcDate.substr(11, 5)}</span>
+                                                )}
+                                            </span>
+                                        </div>
+                                    </div>
                                     <Link to={`/team/${match.awayTeam.id}`}>
                                         <div className="flex items-center flex-1 flex-row-reverse text-right mr-5 max-w-1/3 hover:text-blue-600 hover:underline underline-offset-2">
-                                            <span className="order-1">
+                                            <span className="order-1 text-sm sm:text-base truncate md:whitespace-normal">
                                                 {window.innerWidth < 1200
                                                     ? match.awayTeam.shortName
                                                     : match.awayTeam.name}
