@@ -1,6 +1,6 @@
 import { corsProxyUrl } from "../Global";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { differenceInYears } from "date-fns";
 
 export default function Team() {
@@ -44,32 +44,47 @@ export default function Team() {
                         <div className="w-1/2 border-l-2 border-slate-400 p-5">
                             <h3 className="text-xl font-bold mb-3">General Info</h3>
                             <div className="pl-2">
-                                <p className="inline-block my-2">Founded: {" " + team.founded}</p>
+                                <p className="inline-block my-2">Founded: &nbsp;{team.founded}</p>
                                 <br></br>
                                 <p className="inline-block my-2">
-                                    Nation: {" " + team.area.name + " "}
+                                    Nation: &nbsp;{team.area.name}&nbsp;
                                 </p>
                                 <img
                                     src={team.area.flag}
                                     className="w-8 h-8 ml-2 inline-block"
                                 ></img>
                                 <br></br>
+                                <p className="inline-block my-2">Competiton: &nbsp;</p>
+
+                                {team.runningCompetitions.map((competition) => {
+                                    console.log(competition);
+                                    if (competition.type === "LEAGUE") {
+                                        return (
+                                            <Link
+                                                to={`/competitions/${competition.id}?name=${competition.name}`}
+                                            >
+                                                <div className="inline-block my-2 hover:text-blue-600 hover:underline underline-offset-2 hover:cursor-pointer">
+                                                    {competition.name}
+
+                                                    <img
+                                                        src={competition.emblem}
+                                                        className="w-8 h-8 ml-2 inline-block"
+                                                    ></img>
+                                                </div>
+                                            </Link>
+                                        );
+                                    }
+                                })}
+
+                                <br></br>
                                 <p className="inline-block my-2">
-                                    Competiton: {" " + team.runningCompetitions[0].name}
+                                    Club colors: &nbsp;{team.clubColors}
                                 </p>
-                                <img
-                                    src={team.runningCompetitions[0].emblem}
-                                    className="w-8 h-8 ml-2 inline-block"
-                                ></img>
+                                <br></br>
+                                <p className="inline-block my-2">Stadium: &nbsp;{team.venue}</p>
                                 <br></br>
                                 <p className="inline-block my-2">
-                                    Club colors: {" " + team.clubColors}
-                                </p>
-                                <br></br>
-                                <p className="inline-block my-2">Stadium: {" " + team.venue}</p>
-                                <br></br>
-                                <p className="inline-block my-2">
-                                    Coach: {" " + team.coach.name + " "}
+                                    Coach: &nbsp;{team.coach.name}&nbsp;
                                 </p>
                             </div>
                         </div>
@@ -77,6 +92,12 @@ export default function Team() {
                     <div className="w-full border-l-2 border-slate-400 p-5">
                         <h3 className="text-xl font-bold mb-3">Squad</h3>
                         <div>
+                            <div className="flex justify-between items-center p-3 text-slate-800 bg-slate-700 text-white">
+                                <span className="w-1/4 text-left">Position</span>
+                                <span className="w-1/4 text-left">Name</span>
+                                <span className="w-1/4 text-left">Nationality</span>
+                                <span className="w-1/4 text-left">Age</span>
+                            </div>
                             {squad?.map((player, idx) => {
                                 if (player.position) {
                                     return (
@@ -96,7 +117,7 @@ export default function Team() {
                                                 {player.nationality}
                                             </span>
                                             <span className="w-1/4 text-left">
-                                                {"Age: " + calculateAge(player.dateOfBirth)}
+                                                {calculateAge(player.dateOfBirth)}
                                             </span>
                                         </div>
                                     );

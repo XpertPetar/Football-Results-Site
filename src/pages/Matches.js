@@ -59,8 +59,8 @@ export default function Matches() {
                     </div>
                 )}
 
-                <div className="flex justify-between">
-                    <div className="my-5">
+                <div className="flex justify-center">
+                    <div className="my-5 mx-1">
                         <button
                             onClick={() => {
                                 updateDate(dayBeforeDate);
@@ -71,8 +71,19 @@ export default function Matches() {
                             Previous Day
                         </button>
                     </div>
+                    <div className="my-5 mx-1">
+                        <button
+                            onClick={() => {
+                                updateDate(format(new Date(), "yyyy-MM-dd"));
+                            }}
+                            type="button"
+                            className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-2"
+                        >
+                            Today
+                        </button>
+                    </div>
 
-                    <div className="my-5">
+                    <div className="my-5 mx-1">
                         <button
                             onClick={() => {
                                 updateDate(dayAfterDate);
@@ -94,7 +105,7 @@ export default function Matches() {
                                     className="h-20 p-5 mb-2 bg-gray-100 rounded flex items-center justify-between"
                                 >
                                     <Link to={`/team/${match.homeTeam.id}`}>
-                                        <div className="flex items-center flex-1 text-left ml-5 max-w-1/3">
+                                        <div className="flex items-center flex-1 text-left ml-5 max-w-1/3 hover:text-blue-600 hover:underline underline-offset-2">
                                             <img
                                                 src={match.homeTeam.crest}
                                                 alt="homeTeamLogo"
@@ -145,7 +156,7 @@ export default function Matches() {
                                     </div>
 
                                     <Link to={`/team/${match.awayTeam.id}`}>
-                                        <div className="flex items-center flex-1 flex-row-reverse text-right mr-5 max-w-1/3">
+                                        <div className="flex items-center flex-1 flex-row-reverse text-right mr-5 max-w-1/3 hover:text-blue-600 hover:underline underline-offset-2">
                                             <span className="order-1">
                                                 {window.innerWidth < 1200
                                                     ? match.awayTeam.shortName

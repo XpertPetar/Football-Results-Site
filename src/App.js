@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import { AuthProvider } from "./contexts/authContext";
 import Register from "./pages/Register";
 import Team from "./pages/Team";
+import News from "./pages/News";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                             <Route path="/login" element={<Login></Login>}></Route>
                             <Route path="/register" element={<Register></Register>}></Route>
                             <Route path="/team/:id" element={<Team></Team>}></Route>
+                            <Route path="/news" element={<News></News>}></Route>
                         </Routes>
                     </Header>
                 </BrowserRouter>

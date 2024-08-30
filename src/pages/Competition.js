@@ -72,10 +72,10 @@ export default function Competition() {
                                 className={idx % 2 === 0 ? "bg-slate-200" : "bg-slate-50"}
                             >
                                 <td className="py-3 px-4 text-base text-gray-600 font-bold pl-10">
-                                    {idx + 1}
+                                    {idx + 1 + "."}
                                 </td>
                                 <Link to={`/team/${team.team.id}`}>
-                                    <td className="py-3 px-4 text-sm text-gray-600">
+                                    <td className="py-3 px-4 text-sm text-gray-600 hover:text-blue-600 hover:underline underline-offset-2">
                                         <img
                                             src={team.team.crest}
                                             className="inline-block w-8 h-8 mr-5"
@@ -96,7 +96,7 @@ export default function Competition() {
                                 <td className="py-3 px-4 text-sm text-gray-600">
                                     {team.goalDifference}
                                 </td>
-                                <td className="py-3 px-4 text-sm text-gray-600 font-bold">
+                                <td className="py-3 px-4 text-base text-gray-600 font-bold">
                                     {team.points}
                                 </td>
                             </tr>

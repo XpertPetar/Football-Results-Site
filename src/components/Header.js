@@ -4,10 +4,12 @@ import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../contexts/authContext";
 import { doSignOut } from "../firebase/auth";
+import Search from "./Search";
 
 const navigation = [
     { name: "Matches", href: "/matches" },
-    { name: "Competitions", href: "/competitions" }
+    { name: "Competitions", href: "/competitions" },
+    { name: "News", href: "/news" }
 ];
 
 function classNames(...classes) {
@@ -61,6 +63,9 @@ export default function Header(props) {
                                     ))}
                                 </div>
                             </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <Search />
                         </div>
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                             {userLoggedIn ? (
