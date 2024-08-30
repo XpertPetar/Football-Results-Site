@@ -2,11 +2,13 @@ import { corsProxyUrl } from "../Global";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { differenceInYears } from "date-fns";
+import Fixtures from "../components/Fixtures";
 
 export default function Team() {
     const { id } = useParams();
     const [team, setTeam] = useState();
     const [squad, setSquad] = useState();
+    const [fixtures, setFixtures] = useState();
 
     useEffect(() => {
         const url = `${corsProxyUrl}api/teams/${id}`;
@@ -22,6 +24,21 @@ export default function Team() {
                 console.log(data);
                 setTeam(data);
                 setSquad(data.squad);
+            })
+            .catch((error) => console.error("Fetch error:", error));
+
+        const fixturesUrl = `${corsProxyUrl}api/teams/${id}/matches`;
+
+        fetch(fixturesUrl, {
+            method: "GET"
+        })
+            .then((response) => {
+                console.log(response.status);
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data.matches);
+                setFixtures(data.matches);
             })
             .catch((error) => console.error("Fetch error:", error));
     }, []);
@@ -88,6 +105,10 @@ export default function Team() {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                    <div className="w-full border-l-2 border-slate-400 p-5">
+                        <h3 className="text-xl font-bold mb-3">Fixtures</h3>
+                        <Fixtures matches={fixtures} />
                     </div>
                     <div className="w-full border-l-2 border-slate-400 p-5">
                         <h3 className="text-xl font-bold mb-3">Squad</h3>

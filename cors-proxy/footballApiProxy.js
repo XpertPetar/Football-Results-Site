@@ -18,7 +18,11 @@ app.get("/api/*", async (req, res) => {
 
         // Forward the request with query parameters and headers
         const response = await axios.get(targetUrl, {
-            headers: { "X-Auth-Token": "bee0fa7abc114385b2b2e9e1eb961b2b" }, // Replace with your actual API key
+            headers: {
+                "X-Auth-Token": "bee0fa7abc114385b2b2e9e1eb961b2b",
+                "X-Unfold-Lineups": true,
+                "X-Unfold-Goals": true
+            }, // Replace with your actual API key
             params: req.query // Forward query parameters
         });
 
