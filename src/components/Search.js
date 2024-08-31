@@ -1,79 +1,85 @@
 import { useEffect, useState } from "react";
-import SearchDropdown from "./SearchDropdown.js";
+import SearchSuggestions from "./SearchSuggestions";
+import SearchDropdown from "./SearchDropdown";
 import { useNavigate } from "react-router-dom";
 import { competitionsDictionary, teamsDictionary } from "../Global.js";
 
 export default function Search() {
     const [input, setInput] = useState("");
     const [searchFilter, setSearchFilter] = useState("team");
+    const [suggestions, setSuggestions] = useState([]);
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        if (searchFilter === "competitions") {
-            // Find the competition that includes the search input as a substring
-            const competition = Object.keys(competitionsDictionary).find((name) =>
+    useEffect(() => {
+        if (input) {
+            const currentDictionary =
+                searchFilter === "competitions" ? competitionsDictionary : teamsDictionary;
+            const filteredSuggestions = Object.keys(currentDictionary).filter((name) =>
                 name.toLowerCase().includes(input.toLowerCase())
             );
+            setSuggestions(filteredSuggestions);
+        } else {
+            setSuggestions([]);
+        }
+    }, [input, searchFilter]);
 
+    const handleSubmit = (suggestion = input) => {
+        if (searchFilter === "competitions") {
+            const competition = Object.keys(competitionsDictionary).find((name) =>
+                name.toLowerCase().includes(suggestion.toLowerCase())
+            );
             if (competition) {
-                // Get the ID of the matched competition
                 const competitionId = competitionsDictionary[competition];
                 navigate(`/${searchFilter}/${competitionId}?name=${competition}`);
-            } else {
-                console.log("Competition not found");
-                // Optionally handle the case where no competition is found
             }
         } else if (searchFilter === "team") {
             const team = Object.keys(teamsDictionary).find((name) =>
-                name.toLowerCase().includes(input.toLowerCase())
+                name.toLowerCase().includes(suggestion.toLowerCase())
             );
-
             if (team) {
-                // Get the ID of the matched competition
                 const teamId = teamsDictionary[team];
                 navigate(`/${searchFilter}/${teamId}`);
-            } else {
-                console.log("Team not found");
-                // Optionally handle the case where no competition is found
             }
         }
+
+        setInput("");
     };
 
     function updateSearchFilter(newValue) {
         setSearchFilter(newValue);
     }
 
-    useEffect(() => {
-        console.log("in search: ", searchFilter);
-        if (input !== "") handleSubmit();
-    }, [searchFilter]);
+    const handleSuggestionClick = (suggestion) => {
+        setInput(suggestion);
+        handleSubmit(suggestion);
+    };
 
     return (
-        <div
-            onSubmit={(e) => {
-                e.preventDefault();
-                handleSubmit();
-            }}
-            className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
-        >
-            <form className="max-w-lg mx-auto">
+        <div className="relative flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                }}
+                className="max-w-lg mx-auto"
+            >
                 <div className="flex items-center">
                     <SearchDropdown updateSearchFilter={updateSearchFilter} />
 
                     <div className="relative md:min-w-96 lg:min-w-96 xl:min-w-96 2xl:w-96 sm:max-w-48">
                         <input
-                            onChange={(e) => {
-                                setInput(e.target.value);
-                            }}
+                            onChange={(e) => setInput(e.target.value)}
+                            value={input}
                             type="search"
                             id="search"
                             className="block p-2.5 w-full z-20 text-sm text-gray-800 bg-white rounded-e-lg focus:!border-purple-500 focus:!ring-purple-500 focus:bg-gray-200 placeholder-gray-800"
                             placeholder="Search"
                             required
+                            autoComplete="off"
                         />
                         <button
                             type="submit"
-                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white rounded-e-md bg-gray-400 hover:bg-gray-500 focus:outline-none focus:border-gray-500 dark:hover:bg-gray-500 "
+                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white rounded-tr-md bg-gray-400 hover:bg-gray-500 focus:outline-none focus:border-gray-500"
                         >
                             <svg
                                 className="w-4 h-4"
@@ -94,6 +100,12 @@ export default function Search() {
                         </button>
                     </div>
                 </div>
+
+                {/* Include SearchSuggestions below the input field */}
+                <SearchSuggestions
+                    suggestions={suggestions}
+                    onSuggestionClick={handleSuggestionClick}
+                />
             </form>
         </div>
     );

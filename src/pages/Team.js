@@ -329,41 +329,45 @@ export default function Team() {
                         {fixtures ? (
                             <Fixtures matches={fixtures} />
                         ) : (
-                            <div className="flex flex-col items-center">
-                                {dummyFixtures.map((fixture) => (
-                                    <div
-                                        key={fixture.id}
-                                        className="w-52 h-48 p-4 flex-shrink-0 flex flex-col gap-2 justify-center items-start rounded-md bg-gray-200 pulse-animation"
-                                    >
-                                        <div className="w-full flex items-center gap-2">
-                                            <img
-                                                src={fixture.homeTeam.crest}
-                                                alt={fixture.homeTeam.shortName}
-                                                className="w-12 h-12"
-                                            />
-                                            <span className="text-sm font-semibold bg-gray-100 text-transparent">
-                                                {fixture.homeTeam.shortName}
-                                            </span>
-                                            <span className="text-lg font-semibold ml-5">
-                                                {fixture.score.fullTime.home}
-                                            </span>
-                                        </div>
-                                        <div className="w-full flex items-center gap-2 mt-2">
-                                            <img
-                                                src={fixture.awayTeam.crest}
-                                                alt={fixture.awayTeam.shortName}
-                                                className="w-12 h-12"
-                                            />
-                                            <span className="text-sm font-semibold bg-gray-100 text-transparent">
-                                                {fixture.awayTeam.shortName}
-                                            </span>
-                                            <span className="text-lg font-semibold ml-5">
-                                                {fixture.score.fullTime.away}
-                                            </span>
-                                        </div>
+                            <>
+                                <div className="overflow-x-auto">
+                                    <div className="flex space-x-2 divide-x py-2 relative">
+                                        {dummyFixtures.map((fixture) => (
+                                            <div
+                                                key={fixture.id}
+                                                className="w-52 h-48 p-4 flex-shrink-0 flex gap-2 justify-center items-start rounded-md bg-gray-200 pulse-animation"
+                                            >
+                                                <div className="w-full flex items-center gap-2">
+                                                    <img
+                                                        src={fixture.homeTeam.crest}
+                                                        alt={fixture.homeTeam.shortName}
+                                                        className="w-12 h-12"
+                                                    />
+                                                    <span className="text-sm font-semibold bg-gray-100 text-transparent">
+                                                        {fixture.homeTeam.shortName}
+                                                    </span>
+                                                    <span className="text-lg font-semibold ml-5">
+                                                        {fixture.score.fullTime.home}
+                                                    </span>
+                                                </div>
+                                                <div className="w-full flex items-center gap-2 mt-2">
+                                                    <img
+                                                        src={fixture.awayTeam.crest}
+                                                        alt={fixture.awayTeam.shortName}
+                                                        className="w-12 h-12"
+                                                    />
+                                                    <span className="text-sm font-semibold bg-gray-100 text-transparent">
+                                                        {fixture.awayTeam.shortName}
+                                                    </span>
+                                                    <span className="text-lg font-semibold ml-5">
+                                                        {fixture.score.fullTime.away}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
+                                </div>
+                            </>
                         )}
                     </div>
                     <div className="w-full border-l-2 border-slate-400 p-5">

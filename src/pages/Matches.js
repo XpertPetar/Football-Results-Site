@@ -146,8 +146,12 @@ export default function Matches() {
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <div className="text-center">
                                             {match.status === "IN_PLAY" ? (
-                                                <span className="block text-green-500 font-bold text-sm">
+                                                <span className="block text-green-500 font-bold text-sm pulse-animation">
                                                     Playing
+                                                </span>
+                                            ) : match.status === "PAUSED" ? (
+                                                <span className="block text-green-500 font-bold text-sm">
+                                                    Half Time
                                                 </span>
                                             ) : match.status === "TIMED" ||
                                               match.status === "SCHEDULED" ? (
@@ -163,12 +167,20 @@ export default function Matches() {
                                                     Postponed
                                                 </span>
                                             ) : (
-                                                <span className="block text-green-500 font-bold text-sm">
+                                                <span className="block text-green-500 font-bold text-sm pulse-animation">
                                                     Playing
                                                 </span>
                                             )}
 
-                                            <span className="block border-b-2 border-indigo-500 w-fit mx-auto">
+                                            <span
+                                                className={`block border-b-2 w-fit mx-auto ${
+                                                    match.status === "IN_PLAY"
+                                                        ? "border-green-500 pulse-animation"
+                                                        : match.status === "PAUSED"
+                                                        ? "border-green-500"
+                                                        : "border-indigo-500"
+                                                }`}
+                                            >
                                                 {match.score.fullTime.home !== null &&
                                                 match.score.fullTime.away !== null ? (
                                                     <span>

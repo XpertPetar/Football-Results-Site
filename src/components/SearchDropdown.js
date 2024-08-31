@@ -87,19 +87,6 @@ export default function SearchDropdown(props) {
                                         Competition
                                     </a>
                                 </li>
-                                {/* <li>
-                                    <a
-                                        onClick={() => {
-                                            setCategory("Player");
-                                            props.updateSearchFilter("player");
-                                            toggleShow();
-                                        }}
-                                        href="#"
-                                        className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-500 text-white no-underline text-left"
-                                    >
-                                        Player
-                                    </a>
-                                </li> */}
                             </div>
                         </ul>
                     </div>
