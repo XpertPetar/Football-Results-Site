@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { differenceInYears } from "date-fns";
 import Fixtures from "../components/Fixtures";
 import FollowButton from "../components/FollowButton";
+import clubLogo from "../images/clubLogo.png";
 
 export default function Team() {
     const { id } = useParams();
@@ -30,18 +31,20 @@ export default function Team() {
 
         const fixturesUrl = `${corsProxyUrl}api/teams/${id}/matches`;
 
-        fetch(fixturesUrl, {
-            method: "GET"
-        })
-            .then((response) => {
-                console.log(response.status);
-                return response.json();
+        const timeout = setTimeout(() => {
+            fetch(fixturesUrl, {
+                method: "GET"
             })
-            .then((data) => {
-                console.log(data.matches);
-                setFixtures(data.matches);
-            })
-            .catch((error) => console.error("Fetch error:", error));
+                .then((response) => {
+                    console.log(response.status);
+                    return response.json();
+                })
+                .then((data) => {
+                    console.log(data.matches);
+                    setFixtures(data.matches);
+                })
+                .catch((error) => console.error("Fetch error:", error));
+        }, 2000);
     }, [id]);
 
     function calculateAge(dateOfBirth) {
@@ -109,6 +112,46 @@ export default function Team() {
                 }
             },
             matchday: 2
+        },
+        {
+            id: 4,
+            homeTeam: {
+                id: 7,
+                crest: "https://via.placeholder.com/48",
+                shortName: "Home Team B"
+            },
+            awayTeam: {
+                id: 8,
+                crest: "https://via.placeholder.com/48",
+                shortName: "Away Team B"
+            },
+            score: {
+                fullTime: {
+                    home: 0,
+                    away: 0
+                }
+            },
+            matchday: 2
+        },
+        {
+            id: 5,
+            homeTeam: {
+                id: 9,
+                crest: "https://via.placeholder.com/48",
+                shortName: "Home Team B"
+            },
+            awayTeam: {
+                id: 10,
+                crest: "https://via.placeholder.com/48",
+                shortName: "Away Team B"
+            },
+            score: {
+                fullTime: {
+                    home: 0,
+                    away: 0
+                }
+            },
+            matchday: 2
         }
     ];
 
@@ -120,7 +163,7 @@ export default function Team() {
                         <FollowButton id={id}></FollowButton>
                         <h1 className="text-2xl font-bold my-8 ml-2 inline-block">{team.name}</h1>
                     </div>
-                    <div className="mx-auto flex gap-5 justify-between my-8 bg-blue-50 rounded-xl lg:rounded-full py-4">
+                    <div className="mx-auto flex gap-5 justify-between my-8 bg-blue-50 bg-opacity-90 rounded-xl lg:rounded-full py-4">
                         <div className="w-1/2 lg:pl-40 p-5 inline-flex items-center justify-center">
                             <img src={team.crest} className="inline-block w-46 h-46"></img>
                         </div>
@@ -183,11 +226,11 @@ export default function Team() {
                                         {dummyFixtures.map((fixture) => (
                                             <div
                                                 key={fixture.id}
-                                                className="w-52 h-48 p-4 flex-shrink-0 flex gap-2 justify-center items-start rounded-md bg-gray-200 pulse-animation"
+                                                className="w-52 h-48 p-4 flex-shrink-0 flex flex-wrap gap-2 justify-center items-start rounded-md bg-gray-200 pulse-animation bg-opacity-90"
                                             >
                                                 <div className="w-full flex items-center gap-2">
                                                     <img
-                                                        src={fixture.homeTeam.crest}
+                                                        src={clubLogo}
                                                         alt={fixture.homeTeam.shortName}
                                                         className="w-12 h-12"
                                                     />
@@ -200,7 +243,7 @@ export default function Team() {
                                                 </div>
                                                 <div className="w-full flex items-center gap-2 mt-2">
                                                     <img
-                                                        src={fixture.awayTeam.crest}
+                                                        src={clubLogo}
                                                         alt={fixture.awayTeam.shortName}
                                                         className="w-12 h-12"
                                                     />

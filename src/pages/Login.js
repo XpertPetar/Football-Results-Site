@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { doSignInWithEmailAndPassword } from "../firebase/auth.js";
 import { useAuth } from "../contexts/authContext";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link, useLocation } from "react-router-dom";
 import GoogleSignIn from "../components/GoogleSignIn.js";
 
 export default function Login() {
     const { userLoggedIn } = useAuth();
+    const location = useLocation();
+    const prevUrl = location.state?.previousUrl || "/";
 
     useEffect(() => {
         console.log(userLoggedIn);
@@ -40,15 +42,15 @@ export default function Login() {
     return (
         <div className="w-fit mx-auto mt-36">
             {userLoggedIn ? (
-                <Navigate to={"/"} replace={true} />
+                <Navigate to={prevUrl} replace={true} />
             ) : (
                 <>
                     {error && (
-                        <div className="mb-2 bg-red-700 bg-opacity-60 mx-auto text-center p-2.5 rounded border-1 border-red-900 text-sm text-white">
+                        <div className="mb-2 bg-red-700 bg-opacity-60 mx-auto text-center p-2.5 rounded-lg border-1 border-red-900 text-sm text-white">
                             {error}
                         </div>
                     )}
-                    <div className="border-2 border-slate-400 bg-slate-200 p-12 rounded">
+                    <div className="border-2 border-slate-400 bg-slate-200 bg-opacity-60 p-12 rounded-lg">
                         <form onSubmit={onSubmit}>
                             <h3 className="font-bold text-lg">Login</h3>
 
@@ -82,7 +84,7 @@ export default function Login() {
                                 ></input>
                             </div>
                             <div className="border-t border-slate-400">
-                                <button className="mt-4 mb-2 text-white bg-indigo-500 hover:bg-indigo-400 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 rounded-lg text-sm w-full py-2.5 px-4 text-center items-center dark:focus:ring-[#050708]/50 me-2 mb-2 font-bold">
+                                <button className="mt-4 mb-2 text-white bg-blue-900 hover:bg-blue-400 rounded-lg text-sm w-full py-2.5 px-4 text-center items-center dark:focus:ring-[#050708]/50 me-2 mb-2 font-bold">
                                     Login
                                 </button>
                             </div>

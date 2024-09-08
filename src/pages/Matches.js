@@ -72,7 +72,7 @@ export default function Matches() {
                                 updateDate(format(subDays(new Date(date), 1), "yyyy-MM-dd"))
                             }
                             type="button"
-                            className="text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
+                            className="text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
                             Previous Day
                         </button>
@@ -81,7 +81,7 @@ export default function Matches() {
                         <button
                             onClick={() => updateDate(format(new Date(), "yyyy-MM-dd"))}
                             type="button"
-                            className="text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
+                            className="text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
                             Today
                         </button>
@@ -93,7 +93,7 @@ export default function Matches() {
                                 updateDate(format(addDays(new Date(date), 1), "yyyy-MM-dd"))
                             }
                             type="button"
-                            className="text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
+                            className="text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2"
                         >
                             Next Day
                         </button>
@@ -127,9 +127,9 @@ export default function Matches() {
                             matches.map((match) => (
                                 <li
                                     key={match.id}
-                                    className="h-20 lg:w-3/4 mx-auto lg:p-5 mb-2 bg-blue-50 rounded flex items-center justify-between relative"
+                                    className="h-20 lg:w-3/4 mx-auto lg:p-5 mb-2 bg-blue-50 bg-opacity-90 rounded flex items-center justify-between relative"
                                 >
-                                    <Link to={`/team/${match.homeTeam.id}`} className="z-50">
+                                    <Link to={`/team/${match.homeTeam.id}`} className="z-40">
                                         <div className="flex items-center flex-1 text-left lg:ml-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">
                                             <img
                                                 src={match.homeTeam.crest}
@@ -200,7 +200,7 @@ export default function Matches() {
                                             </span>
                                         </div>
                                     </div>
-                                    <Link to={`/team/${match.awayTeam.id}`} className="z-50">
+                                    <Link to={`/team/${match.awayTeam.id}`} className="z-40">
                                         <div className="flex items-center flex-1 flex-row-reverse text-right lg:mr-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">
                                             <span className="order-1 text-sm sm:text-base truncate md:whitespace-normal">
                                                 {window.innerWidth < 1200

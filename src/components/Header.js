@@ -37,7 +37,7 @@ export default function Header(props) {
         <div className="noto-sans-regular">
             <Disclosure
                 as="nav"
-                className="text-white bg-gradient-to-br from-blue-900 to-blue-400 font-medium text-sm px-5 py-2.5 text-center mb-2"
+                className="text-white bg-gradient-to-br from-blue-900 to-blue-400 font-medium text-sm px-5 py-2.5 text-center"
             >
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
@@ -206,8 +206,8 @@ export default function Header(props) {
                     </div>
                 </DisclosurePanel>
             </Disclosure>
-            <div className="bg-[url('./images/background-2.png')] bg-center h-screen object-cover bg-no-repeat">
-                <div className="my-3 p-2 max-w-6xl mx-auto">{props.children}</div>
+            <div className="bg-[url('./images/background-3.png')] bg-center h-screen object-cover bg-no-repeat">
+                <div className="p-2 max-w-6xl mx-auto">{props.children}</div>
             </div>
         </div>
     );

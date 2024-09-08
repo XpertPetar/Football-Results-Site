@@ -36,7 +36,7 @@ const Fixtures = ({ matches = [] }) => {
                     matches.map((match) => (
                         <div
                             key={match.id}
-                            className={`w-52 h-48 p-4 flex-shrink-0 flex flex-col gap-2 justify-center items-start rounded-md relative ${getMatchCardClass(
+                            className={`w-52 h-48 p-4 flex-shrink-0 flex flex-col gap-2 justify-center items-start rounded-md relative bg-opacity-90 ${getMatchCardClass(
                                 match
                             )}`}
                         >

@@ -4,10 +4,13 @@ import { addFavoriteTeam, removeFavoriteTeam } from "../services/databaseService
 import { useEffect, useState } from "react";
 import { auth } from "../firebase/firebase";
 import { useFavorite } from "../contexts/favoriteTeamContext/favoriteTeamContext";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function FollowButton(props) {
     const [isClicked, setIsClicked] = useState(false);
     const { favoriteTeam } = useFavorite();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         if (props.id == favoriteTeam) {
@@ -45,13 +48,15 @@ export default function FollowButton(props) {
             //updateMessage("You need to log in to add to your favorites");
             //sessionStorage.setItem("previousUrl", window.location.pathname);
             console.log(error);
+            alert("You are not logged in! \nRedirecting to login page.");
+            navigate("/login", { state: { previousUrl: location.pathname } });
         }
     };
 
     return (
         <button
             onClick={handleClick}
-            className="inline-flex items-center cursor-pointer h-fit text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center w-32"
+            className="inline-flex items-center cursor-pointer h-fit text-white bg-gradient-to-br from-blue-900 to-blue-400 hover:bg-gradient-to-bl font-medium rounded-md text-sm px-5 py-2.5 text-center w-32"
         >
             {isClicked ? (
                 <>

@@ -66,7 +66,7 @@ export default function Search() {
                 <div className="flex items-center">
                     <SearchDropdown updateSearchFilter={updateSearchFilter} />
 
-                    <div className="relative md:min-w-96 lg:min-w-96 xl:min-w-96 2xl:w-96 sm:max-w-48">
+                    <div className="relative lg:min-w-96 max-w-48">
                         <input
                             onChange={(e) => setInput(e.target.value)}
                             value={input}
@@ -79,7 +79,7 @@ export default function Search() {
                         />
                         <button
                             type="submit"
-                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white rounded-tr-md bg-slate-600 hover:bg-slate-500 focus:outline-none focus:border-gray-500"
+                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white rounded-tr-md bg-blue-900 hover:bg-blue-400 focus:outline-none focus:border-gray-500"
                         >
                             <svg
                                 className="w-4 h-4"

@@ -36,7 +36,7 @@ export default function Register() {
             {userLoggedIn ? (
                 <Navigate to={"/"} replace={true} />
             ) : (
-                <div className="border-2 border-slate-400 bg-slate-200 p-12 rounded">
+                <div className="border-2 border-slate-400 bg-slate-200 p-12 rounded-lg">
                     <form onSubmit={onSubmit}>
                         <h3 className="font-bold text-lg">Register</h3>
 
@@ -70,7 +70,7 @@ export default function Register() {
                             ></input>
                         </div>
                         <div className="border-t border-slate-400">
-                            <button className="mt-4 mb-2 text-white bg-indigo-500 hover:bg-indigo-400 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 rounded-lg text-sm w-full py-2.5 px-4 text-center items-center dark:focus:ring-[#050708]/50 me-2 mb-2 font-bold">
+                            <button className="mt-4 mb-2 text-white bg-blue-900 hover:bg-blue-400 rounded-lg text-sm w-full py-2.5 px-4 text-center items-center dark:focus:ring-[#050708]/50 me-2 mb-2 font-bold">
                                 Register
                             </button>
                         </div>
