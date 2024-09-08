@@ -51,15 +51,16 @@ export default function FollowButton(props) {
     return (
         <button
             onClick={handleClick}
-            className="inline-flex cursor-pointer h-fit gap-2 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center"
+            className="inline-flex items-center cursor-pointer h-fit text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center w-32"
         >
             {isClicked ? (
                 <>
                     <HeartIconSolid
                         title="Remove from Favorites"
                         className={`size-5 text-red-600 hover:opacity-70`}
+                        stroke="white"
                     ></HeartIconSolid>
-                    Unfollow
+                    <span className="pl-2.5">Unfollow</span>
                 </>
             ) : (
                 <>
@@ -67,7 +68,7 @@ export default function FollowButton(props) {
                         title="Add to Favorites"
                         className={`size-5 hover:text-red-600`}
                     ></HeartIconOutline>
-                    Follow
+                    <span className="pl-2.5">Follow</span>
                 </>
             )}
         </button>

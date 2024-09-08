@@ -33,7 +33,7 @@ export default function SearchDropdown(props) {
                     onClick={toggleShow}
                     id="dropdownDefaultButton"
                     data-dropdown-toggle="dropdown"
-                    className="max-w-28 min-w-32 flex-shrink-0 z-10 items-center py-2.5 px-3 text-sm font-medium text-center text-white bg-gray-400 hover:bg-gray-500 rounded-tl-md focus:outline-none"
+                    className="max-w-28 min-w-32 flex-shrink-0 z-10 items-center py-2.5 px-3 text-sm font-medium text-center text-white bg-slate-600 hover:bg-slate-400 rounded-tl-md focus:outline-none"
                     type="button"
                 >
                     {category}{" "}
@@ -55,12 +55,12 @@ export default function SearchDropdown(props) {
                 </button>
 
                 {show ? (
-                    <div id="dropdown" className="absolute z-10 shadow w-44">
+                    <div id="dropdown" className="absolute z-10 w-44">
                         <ul
                             className="px-0 m-0 text-sm text-white"
                             aria-labelledby="dropdownDefaultButton"
                         >
-                            <div className="p-2 bg-gray-400 divide-y divide-gray-500 rounded-sm">
+                            <div className="p-2 bg-slate-600 divide-y divide-gray-500 rounded-sm">
                                 <li>
                                     <a
                                         onClick={() => {
@@ -69,7 +69,7 @@ export default function SearchDropdown(props) {
                                             toggleShow();
                                         }}
                                         href="#"
-                                        className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-500 text-white no-underline text-left"
+                                        className="rounded-sm block px-4 py-2.5 bg-slate-600 hover:bg-slate-500 text-white no-underline text-left"
                                     >
                                         Team
                                     </a>
@@ -82,7 +82,7 @@ export default function SearchDropdown(props) {
                                             toggleShow();
                                         }}
                                         href="#"
-                                        className="rounded-sm block px-4 py-2.5 bg-gray-400 hover:bg-gray-500 text-white no-underline text-left"
+                                        className="rounded-sm block px-4 py-2.5 bg-slate-600 hover:bg-slate-500 text-white no-underline text-left"
                                     >
                                         Competition
                                     </a>

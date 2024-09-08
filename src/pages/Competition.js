@@ -34,7 +34,7 @@ export default function Competition() {
         <>
             <h1 className="text-center text-2xl font-bold my-8">{leagueName}</h1>
             <table className="w-full bg-white border border-gray-300 rounded-lg shadow-md">
-                <thead className="bg-slate-700 text-white text-sm font-semibold">
+                <thead className="bg-gradient-to-br from-blue-900 to-blue-400 text-white text-sm font-semibold">
                     <tr>
                         <th className="py-3 px-4 text-left" title="Position">
                             Pos.

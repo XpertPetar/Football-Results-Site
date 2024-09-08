@@ -37,7 +37,7 @@ export default function Header(props) {
         <div className="noto-sans-regular">
             <Disclosure
                 as="nav"
-                className="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium text-sm px-5 py-2.5 text-center mb-2"
+                className="text-white bg-gradient-to-br from-blue-900 to-blue-400 font-medium text-sm px-5 py-2.5 text-center mb-2"
             >
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
@@ -67,8 +67,8 @@ export default function Header(props) {
                                                 return (
                                                     "no-underline rounded-md px-3 py-2 text-sm font-medium " +
                                                     (isActive
-                                                        ? "bg-purple-800 text-white"
-                                                        : "text-gray-100 hover:bg-purple-500 hover:text-white")
+                                                        ? "bg-blue-900 text-white"
+                                                        : "text-gray-100 hover:bg-blue-400 hover:text-white")
                                                 );
                                             }}
                                         >
@@ -84,8 +84,8 @@ export default function Header(props) {
                                                 return (
                                                     "no-underline rounded-md px-3 py-2 text-sm font-medium " +
                                                     (isActive
-                                                        ? "bg-purple-800 text-white"
-                                                        : "text-gray-100 hover:bg-purple-500 hover:text-white")
+                                                        ? "bg-blue-900 text-white"
+                                                        : "text-gray-100 hover:bg-blue-400 hover:text-white")
                                                 );
                                             }}
                                         >
@@ -109,8 +109,8 @@ export default function Header(props) {
                                         return (
                                             "no-underline rounded-md px-3 py-2 text-sm font-medium " +
                                             (isActive
-                                                ? "bg-purple-800 text-white"
-                                                : "text-gray-100 hover:bg-purple-500 hover:text-white")
+                                                ? "bg-blue-900 text-white"
+                                                : "text-gray-100 hover:bg-blue-400 hover:text-white")
                                         );
                                     }}
                                 >
@@ -123,8 +123,8 @@ export default function Header(props) {
                                         return (
                                             "no-underline rounded-md px-3 py-2 text-sm font-medium " +
                                             (isActive
-                                                ? "bg-purple-800 text-white"
-                                                : "text-gray-100 hover:bg-purple-500 hover:text-white")
+                                                ? "bg-blue-900 text-white"
+                                                : "text-gray-100 hover:bg-blue-400 hover:text-white")
                                         );
                                     }}
                                 >
@@ -146,8 +146,8 @@ export default function Header(props) {
                                     return (
                                         "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
                                         (isActive
-                                            ? "bg-purple-800 text-white"
-                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                            ? "bg-blue-900 text-white"
+                                            : "text-gray-300 hover:bg-blue-400 hover:text-white")
                                     );
                                 }}
                             >
@@ -162,8 +162,8 @@ export default function Header(props) {
                                     return (
                                         "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
                                         (isActive
-                                            ? "bg-purple-800 text-white"
-                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                            ? "bg-blue-900 text-white"
+                                            : "text-gray-300 hover:bg-blue-400 hover:text-white")
                                     );
                                 }}
                             >
@@ -181,8 +181,8 @@ export default function Header(props) {
                                     return (
                                         "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
                                         (isActive
-                                            ? "bg-purple-800 text-white"
-                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                            ? "bg-blue-900 text-white"
+                                            : "text-gray-300 hover:bg-blue-400 hover:text-white")
                                     );
                                 }}
                             >
@@ -195,8 +195,8 @@ export default function Header(props) {
                                     return (
                                         "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
                                         (isActive
-                                            ? "bg-purple-800 text-white"
-                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                            ? "bg-blue-900 text-white"
+                                            : "text-gray-300 hover:bg-blue-400 hover:text-white")
                                     );
                                 }}
                             >
@@ -206,7 +206,7 @@ export default function Header(props) {
                     </div>
                 </DisclosurePanel>
             </Disclosure>
-            <div className="bg-white">
+            <div className="bg-[url('./images/background-2.png')] bg-center h-screen object-cover bg-no-repeat">
                 <div className="my-3 p-2 max-w-6xl mx-auto">{props.children}</div>
             </div>
         </div>

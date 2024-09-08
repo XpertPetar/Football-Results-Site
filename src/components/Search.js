@@ -79,7 +79,7 @@ export default function Search() {
                         />
                         <button
                             type="submit"
-                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white rounded-tr-md bg-gray-400 hover:bg-gray-500 focus:outline-none focus:border-gray-500"
+                            className="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white rounded-tr-md bg-slate-600 hover:bg-slate-500 focus:outline-none focus:border-gray-500"
                         >
                             <svg
                                 className="w-4 h-4"
