@@ -123,7 +123,7 @@ export default function Matches() {
                                     </div>
                                 </li>
                             ))
-                        ) : matches ? (
+                        ) : matches.length > 0 ? (
                             matches.map((match) => (
                                 <li
                                     key={match.id}

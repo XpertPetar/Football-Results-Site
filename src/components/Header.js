@@ -34,7 +34,7 @@ export default function Header(props) {
     }
 
     return (
-        <>
+        <div className="noto-sans-regular">
             <Disclosure
                 as="nav"
                 className="text-white bg-gradient-to-br from-purple-600 to-blue-500 font-medium text-sm px-5 py-2.5 text-center mb-2"
@@ -209,6 +209,6 @@ export default function Header(props) {
             <div className="bg-white">
                 <div className="my-3 p-2 max-w-6xl mx-auto">{props.children}</div>
             </div>
-        </>
+        </div>
     );
 }
