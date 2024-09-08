@@ -3,8 +3,11 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "../contexts/authContext";
+import { auth } from "../firebase/firebase";
 import { doSignOut } from "../firebase/auth";
 import Search from "./Search";
+import { useFavorite } from "../contexts/favoriteTeamContext/favoriteTeamContext";
+import { teamsDictionary } from "../Global";
 
 const navigation = [
     { name: "Matches", href: "/matches" },
@@ -18,6 +21,17 @@ function classNames(...classes) {
 
 export default function Header(props) {
     const { userLoggedIn, currentUser } = useAuth();
+    const { favoriteTeam } = useFavorite();
+    const favoriteTeamKey = Object.keys(favoriteTeam);
+
+    const userId = auth.currentUser?.uid;
+
+    console.log("favritue tena: ", favoriteTeamKey);
+    console.log("user tena: ", userId);
+
+    function getFavoriteTeamName() {
+        return Object.keys(teamsDictionary).find((key) => teamsDictionary[key] == favoriteTeam);
+    }
 
     return (
         <>
@@ -61,13 +75,30 @@ export default function Header(props) {
                                             {item.name}
                                         </NavLink>
                                     ))}
+
+                                    {/* favorite team link */}
+                                    {userLoggedIn && favoriteTeamKey.length > 0 ? (
+                                        <NavLink
+                                            to={`/team/${favoriteTeam}`}
+                                            className={({ isActive }) => {
+                                                return (
+                                                    "no-underline rounded-md px-3 py-2 text-sm font-medium " +
+                                                    (isActive
+                                                        ? "bg-purple-800 text-white"
+                                                        : "text-gray-100 hover:bg-purple-500 hover:text-white")
+                                                );
+                                            }}
+                                        >
+                                            {getFavoriteTeamName()}
+                                        </NavLink>
+                                    ) : null}
                                 </div>
                             </div>
                         </div>
                         <div className="flex justify-center">
                             <Search />
                         </div>
-                        <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <div className="hidden lg:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                             {userLoggedIn ? (
                                 <NavLink
                                     to={"/login"}
@@ -123,6 +154,55 @@ export default function Header(props) {
                                 {item.name}
                             </NavLink>
                         ))}
+                        {/* favorite team link */}
+                        {userLoggedIn && favoriteTeamKey.length > 0 ? (
+                            <NavLink
+                                to={`/team/${favoriteTeam}`}
+                                className={({ isActive }) => {
+                                    return (
+                                        "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
+                                        (isActive
+                                            ? "bg-purple-800 text-white"
+                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                    );
+                                }}
+                            >
+                                {getFavoriteTeamName()}
+                            </NavLink>
+                        ) : null}
+
+                        {userLoggedIn ? (
+                            <NavLink
+                                to={"/login"}
+                                onClick={() => {
+                                    doSignOut();
+                                }}
+                                className={({ isActive }) => {
+                                    return (
+                                        "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
+                                        (isActive
+                                            ? "bg-purple-800 text-white"
+                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                    );
+                                }}
+                            >
+                                Logout
+                            </NavLink>
+                        ) : (
+                            <NavLink
+                                to={"/login"}
+                                className={({ isActive }) => {
+                                    return (
+                                        "no-underline block rounded-md px-3 py-2 text-base font-medium text-left " +
+                                        (isActive
+                                            ? "bg-purple-800 text-white"
+                                            : "text-gray-300 hover:bg-purple-800 hover:text-white")
+                                    );
+                                }}
+                            >
+                                Login
+                            </NavLink>
+                        )}
                     </div>
                 </DisclosurePanel>
             </Disclosure>

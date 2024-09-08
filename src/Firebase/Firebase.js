@@ -1,13 +1,14 @@
 // Import the functions you need from the SDKs you need
-const { initializeApp } = require("firebase/app");
-const { getAuth } = require("firebase/auth");
-const { getFirestore, collection, addDoc, getDocs, query, where } = require("firebase/firestore");
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyD1qbN3HOqRZqIe1uh0HbTHzBGneAJb2Pk",
     authDomain: "football-results-site.firebaseapp.com",
+    databaseURL: "https://football-results-site-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "football-results-site",
     storageBucket: "football-results-site.appspot.com",
     messagingSenderId: "132357635114",
@@ -18,6 +19,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = getDatabase(app);
 
-module.exports = { app, auth, db, collection, addDoc, getDocs, query, where };
+export { app, auth, db };

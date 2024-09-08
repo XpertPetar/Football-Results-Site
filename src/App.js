@@ -10,31 +10,34 @@ import { AuthProvider } from "./contexts/authContext";
 import Register from "./pages/Register";
 import Team from "./pages/Team";
 import News from "./pages/News";
+import { FavoriteTeamProvider } from "./contexts/favoriteTeamContext/favoriteTeamContext";
 
 function App() {
     return (
         <div className="App">
             <AuthProvider>
-                <BrowserRouter>
-                    <Header>
-                        <Routes>
-                            <Route path="/matches" element={<Matches></Matches>}></Route>
-                            <Route path="/" element={<Matches></Matches>}></Route>
-                            <Route
-                                path="/competitions"
-                                element={<Competitions></Competitions>}
-                            ></Route>
-                            <Route
-                                path="/competitions/:id"
-                                element={<Competition></Competition>}
-                            ></Route>
-                            <Route path="/login" element={<Login></Login>}></Route>
-                            <Route path="/register" element={<Register></Register>}></Route>
-                            <Route path="/team/:id" element={<Team></Team>}></Route>
-                            <Route path="/news" element={<News></News>}></Route>
-                        </Routes>
-                    </Header>
-                </BrowserRouter>
+                <FavoriteTeamProvider>
+                    <BrowserRouter>
+                        <Header>
+                            <Routes>
+                                <Route path="/matches" element={<Matches></Matches>}></Route>
+                                <Route path="/" element={<Matches></Matches>}></Route>
+                                <Route
+                                    path="/competitions"
+                                    element={<Competitions></Competitions>}
+                                ></Route>
+                                <Route
+                                    path="/competitions/:id"
+                                    element={<Competition></Competition>}
+                                ></Route>
+                                <Route path="/login" element={<Login></Login>}></Route>
+                                <Route path="/register" element={<Register></Register>}></Route>
+                                <Route path="/team/:id" element={<Team></Team>}></Route>
+                                <Route path="/news" element={<News></News>}></Route>
+                            </Routes>
+                        </Header>
+                    </BrowserRouter>
+                </FavoriteTeamProvider>
             </AuthProvider>
         </div>
     );
