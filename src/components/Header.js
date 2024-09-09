@@ -26,8 +26,8 @@ export default function Header(props) {
 
     const userId = auth.currentUser?.uid;
 
-    console.log("favritue tena: ", favoriteTeamKey);
-    console.log("user tena: ", userId);
+    console.log("favorite team: ", favoriteTeamKey);
+    console.log("user id: ", userId);
 
     function getFavoriteTeamName() {
         return Object.keys(teamsDictionary).find((key) => teamsDictionary[key] == favoriteTeam);

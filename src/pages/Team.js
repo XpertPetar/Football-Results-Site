@@ -264,7 +264,7 @@ export default function Team() {
                     <div className="w-full border-l-2 border-slate-400 p-5">
                         <h3 className="text-xl font-bold mb-3">Squad</h3>
                         <div>
-                            <div className="flex justify-between items-center p-3 text-slate-800 bg-slate-700 text-white">
+                            <div className="flex justify-between items-center p-3 text-slate-800 bg-gradient-to-br from-blue-900 to-blue-400 text-white">
                                 <span className="w-1/4 text-left">Position</span>
                                 <span className="w-1/4 text-left">Name</span>
                                 <span className="w-1/4 text-left">Nationality</span>
