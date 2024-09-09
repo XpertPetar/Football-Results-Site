@@ -12,11 +12,9 @@ export default function Competitions() {
             method: "GET"
         })
             .then((response) => {
-                console.log(response.status);
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 setCompetitions(data.competitions);
             })
             .catch((error) => console.error("Fetch error:", error));

@@ -26,9 +26,6 @@ export default function Header(props) {
 
     const userId = auth.currentUser?.uid;
 
-    console.log("favorite team: ", favoriteTeamKey);
-    console.log("user id: ", userId);
-
     function getFavoriteTeamName() {
         return Object.keys(teamsDictionary).find((key) => teamsDictionary[key] == favoriteTeam);
     }
@@ -42,7 +39,6 @@ export default function Header(props) {
                 <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
                         <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                            {/* Mobile menu button*/}
                             <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                                 <span className="absolute -inset-0.5" />
                                 <span className="sr-only">Open main menu</span>
@@ -75,8 +71,6 @@ export default function Header(props) {
                                             {item.name}
                                         </NavLink>
                                     ))}
-
-                                    {/* favorite team link */}
                                     {userLoggedIn && favoriteTeamKey.length > 0 ? (
                                         <NavLink
                                             to={`/team/${favoriteTeam}`}
@@ -154,7 +148,6 @@ export default function Header(props) {
                                 {item.name}
                             </NavLink>
                         ))}
-                        {/* favorite team link */}
                         {userLoggedIn && favoriteTeamKey.length > 0 ? (
                             <NavLink
                                 to={`/team/${favoriteTeam}`}

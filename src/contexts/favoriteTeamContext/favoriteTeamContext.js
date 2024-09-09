@@ -22,7 +22,6 @@ export const FavoriteTeamProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        // listeners for change in favorites
         if (userId) {
             const teamRef = ref(db, `users/${userId}/favorite_team`);
 

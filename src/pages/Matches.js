@@ -7,7 +7,7 @@ import Calendar from "../components/Calendar";
 
 export default function Matches() {
     const [matches, setMatches] = useState([]);
-    const [loading, setLoading] = useState(true); // Start with loading true
+    const [loading, setLoading] = useState(true);
     const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
     const [euDate, setEuDate] = useState(format(new Date(), "dd MMMM"));
     const [dayBeforeDate, setDayBeforeDate] = useState(
@@ -16,7 +16,7 @@ export default function Matches() {
     const [dayAfterDate, setDayAfterDate] = useState(format(addDays(new Date(), 1), "yyyy-MM-dd"));
 
     useEffect(() => {
-        setLoading(true); // Set loading to true when fetching starts
+        setLoading(true);
         const urlCors = `${corsProxyUrl}api/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         const url = `${apiUrl}matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         fetch(`${urlCors}`, {
@@ -28,17 +28,14 @@ export default function Matches() {
             }
         })
             .then((response) => {
-                console.log(response.status);
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 setMatches(data.matches || []);
-                setLoading(false); // Set loading to false when data arrives
+                setLoading(false);
             })
             .catch((error) => {
-                console.error("Fetch error:", error);
-                setLoading(false); // Also stop loading if there is an error
+                setLoading(false);
             });
     }, [date, dayAfterDate]);
 

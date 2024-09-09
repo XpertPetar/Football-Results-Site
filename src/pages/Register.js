@@ -8,17 +8,11 @@ export default function Register() {
     const { userLoggedIn } = useAuth();
     const [isRegistering, setIsRegistering] = useState(false);
 
-    useEffect(() => {
-        console.log(userLoggedIn);
-        console.log(isRegistering);
-    });
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log("in onSubmit register");
         if (!isRegistering) {
             setIsRegistering(true);
             try {
@@ -27,7 +21,6 @@ export default function Register() {
             } catch (error) {
                 setIsRegistering(false);
             }
-            console.log(userLoggedIn);
         }
     };
 

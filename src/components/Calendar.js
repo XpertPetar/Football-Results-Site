@@ -14,7 +14,7 @@ export default function Calendar({ selectedDate, onDateChange }) {
     };
 
     const handleIconClick = () => {
-        datePickerRef.current.setFocus(); // Trigger the date picker to open
+        datePickerRef.current.setFocus();
     };
 
     return (

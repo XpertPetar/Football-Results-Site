@@ -100,8 +100,6 @@ export default function Search() {
                         </button>
                     </div>
                 </div>
-
-                {/* Include SearchSuggestions below the input field */}
                 <SearchSuggestions
                     suggestions={suggestions}
                     onSuggestionClick={handleSuggestionClick}

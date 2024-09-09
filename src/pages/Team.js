@@ -19,11 +19,9 @@ export default function Team() {
             method: "GET"
         })
             .then((response) => {
-                console.log(response.status);
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 setTeam(data);
                 setSquad(data.squad);
             })
@@ -36,11 +34,9 @@ export default function Team() {
                 method: "GET"
             })
                 .then((response) => {
-                    console.log(response.status);
                     return response.json();
                 })
                 .then((data) => {
-                    console.log(data.matches);
                     setFixtures(data.matches);
                 })
                 .catch((error) => console.error("Fetch error:", error));

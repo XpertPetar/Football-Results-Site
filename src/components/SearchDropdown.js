@@ -22,10 +22,6 @@ export default function SearchDropdown(props) {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(category);
-    }, [category]);
-
     return (
         <>
             <div className="relative" ref={dropdownRef}>

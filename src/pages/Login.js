@@ -9,10 +9,6 @@ export default function Login() {
     const location = useLocation();
     const prevUrl = location.state?.previousUrl || "/";
 
-    useEffect(() => {
-        console.log(userLoggedIn);
-    });
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSigningIn, setSigningIn] = useState(false);
@@ -20,7 +16,6 @@ export default function Login() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log("onsubmit with email nad password");
         if (!isSigningIn) {
             setSigningIn(true);
             try {
@@ -29,7 +24,6 @@ export default function Login() {
                 setError("Incorrect username or password.");
                 setSigningIn(false);
             }
-            console.log(userLoggedIn);
         }
     };
 

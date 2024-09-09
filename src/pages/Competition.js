@@ -13,19 +13,15 @@ export default function Competition() {
 
     useEffect(() => {
         const url = `${corsProxyUrl}api/competitions/${id}/standings/`;
-        console.log(url);
         fetch(url, {
             method: "GET"
         })
             .then((response) => {
-                console.log(response.status);
                 return response.json();
             })
             .then((data) => {
-                console.log(data);
                 setCompetition(data);
                 setTeams(data.standings[0].table);
-                console.log(data.standings[0].table);
             })
             .catch((error) => console.error("Fetch error:", error));
     }, []);

@@ -27,26 +27,19 @@ export default function FollowButton(props) {
             if (!isClicked) {
                 try {
                     await addFavoriteTeam(userId, props.id);
-                    //updateMessage("Added to favorites");
                 } catch (error) {
                     console.error("Error adding to favorites: ", error);
-                    //updateMessage("An error occured, try again");
                 }
             } else {
                 try {
                     await removeFavoriteTeam(userId);
-                    //updateMessage("Removed from favorites");
                 } catch (error) {
-                    //updateMessage("An error occured, try again");
                     console.error("Error removing from favorites: ", error);
                 }
             }
 
             setIsClicked(!isClicked);
         } catch (error) {
-            // alert("You're not logged in!");
-            //updateMessage("You need to log in to add to your favorites");
-            //sessionStorage.setItem("previousUrl", window.location.pathname);
             console.log(error);
             alert("You are not logged in! \nRedirecting to login page.");
             navigate("/login", { state: { previousUrl: location.pathname } });
