@@ -15,7 +15,7 @@ export default function Team() {
     useEffect(() => {
         const url = `${corsProxyUrl}api/teams/${id}`;
 
-        fetch(`/api/footballApiProxy/teams/${id}`, {
+        fetch(`/api/footballApiProxy?endpoint=teams/${id}`, {
             method: "GET"
         })
             .then((response) => {
@@ -30,7 +30,7 @@ export default function Team() {
         const fixturesUrl = `${corsProxyUrl}api/teams/${id}/matches`;
 
         const timeout = setTimeout(() => {
-            fetch(fixturesUrl, {
+            fetch(`/api/footballApiProxy?endpoint=teams/${id}/matches`, {
                 method: "GET"
             })
                 .then((response) => {

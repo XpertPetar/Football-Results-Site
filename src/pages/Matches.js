@@ -19,7 +19,7 @@ export default function Matches() {
         setLoading(true);
         const urlCors = `${corsProxyUrl}api/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
         const url = `${apiUrl}matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
-        fetch(`/api/footballApiProxy/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`, {
+        fetch(`/api/footballApiProxy?endpoint=matches/?dateFrom=${date}&dateTo=${dayAfterDate}`, {
             method: "GET",
             headers: {
                 "X-Auth-Token": apiKey,
