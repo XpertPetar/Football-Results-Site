@@ -125,7 +125,7 @@ export default function Matches() {
                                                 alt="homeTeamLogo"
                                                 className="w-8 h-8 mr-5"
                                             />
-                                            <span className="text-sm sm:text-base truncate md:whitespace-normal">
+                                            <span className="text-sm sm:text-base truncate md:whitespace-normal w-16 lg:w-fit">
                                                 {window.innerWidth < 1200
                                                     ? match.homeTeam.shortName
                                                     : match.homeTeam.name}
@@ -191,7 +191,7 @@ export default function Matches() {
                                     </div>
                                     <Link to={`/team/${match.awayTeam.id}`} className="z-40">
                                         <div className="flex items-center flex-1 flex-row-reverse text-right lg:mr-5 max-w-md hover:text-blue-600 hover:underline underline-offset-2">
-                                            <span className="order-1 text-sm sm:text-base truncate md:whitespace-normal">
+                                            <span className="order-1 text-sm sm:text-base truncate md:whitespace-normal w-16 lg:w-fit">
                                                 {window.innerWidth < 1200
                                                     ? match.awayTeam.shortName
                                                     : match.awayTeam.name}
