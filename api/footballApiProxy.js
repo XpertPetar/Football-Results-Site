@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 export default async function handler(req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
 
@@ -8,19 +6,28 @@ export default async function handler(req, res) {
             const endpoint = req.query.endpoint;
             const targetUrl = `https://api.football-data.org/v4/${endpoint}`;
 
-            const response = await axios.get(targetUrl, {
+            const response = await fetch(targetUrl, {
+                method: "GET",
                 headers: {
                     "X-Auth-Token": process.env.FOOTBALL_API_KEY,
                     "X-Unfold-Lineups": true,
                     "X-Unfold-Goals": true
-                },
-                params: req.query
+                }
+                // If you want to pass query parameters, you can append them to the URL
+                // or use the `URLSearchParams` object for cleaner handling
+                // Example:
+                // params: req.query
             });
 
-            res.status(200).json(response.data);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            res.status(200).json(data);
         } catch (error) {
             console.error("Error fetching data:", error); // Log error to console
-            res.status(error.response?.status || 500).json({ error: error.message });
+            res.status(500).json({ error: error.message });
         }
     } else {
         res.setHeader("Allow", ["GET"]);
