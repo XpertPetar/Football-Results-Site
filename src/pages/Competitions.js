@@ -8,7 +8,7 @@ export default function Competitions() {
     useEffect(() => {
         const url = `${corsProxyUrl}api/competitions/`;
 
-        fetch(url, {
+        fetch("/api/footballApiProxy/competitions/", {
             method: "GET"
         })
             .then((response) => {

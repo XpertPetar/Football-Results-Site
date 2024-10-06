@@ -15,7 +15,7 @@ export default function Team() {
     useEffect(() => {
         const url = `${corsProxyUrl}api/teams/${id}`;
 
-        fetch(url, {
+        fetch(`/api/footballApiProxy/teams/${id}`, {
             method: "GET"
         })
             .then((response) => {
