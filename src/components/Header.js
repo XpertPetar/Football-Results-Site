@@ -89,8 +89,10 @@ export default function Header(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-center">
-                            <Search />
+                        <div className="flex justify-center sm:w-2/12 lg:w-4/12">
+                            <div className="w-64 lg:w-full">
+                                <Search />
+                            </div>
                         </div>
                         <div className="hidden lg:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                             {userLoggedIn ? (
@@ -200,7 +202,7 @@ export default function Header(props) {
                 </DisclosurePanel>
             </Disclosure>
             <div className="bg-[url('./images/background-3.png')] bg-center h-screen object-cover bg-no-repeat">
-                <div className="p-2 max-w-6xl mx-auto">{props.children}</div>
+                <div className="p-2 mx-2 max-w-6xl mx-auto">{props.children}</div>
             </div>
         </div>
     );
