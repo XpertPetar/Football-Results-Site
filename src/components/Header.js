@@ -89,7 +89,7 @@ export default function Header(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-center sm:w-2/12 lg:w-4/12">
+                        <div className="flex justify-center">
                             <div className="w-64 lg:w-full">
                                 <Search />
                             </div>

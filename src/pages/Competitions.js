@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { apiKey, apiUrl, corsProxyUrl } from "../Global";
 import { Link } from "react-router-dom";
 
 export default function Competitions() {
     const [competitions, setCompetitions] = useState();
 
     useEffect(() => {
-        const url = `${corsProxyUrl}api/competitions/`;
+        const url = `/api/footballApiProxy?endpoint=competitions`;
 
-        fetch("/api/footballApiProxy?endpoint=competitions", {
+        fetch(url, {
             method: "GET"
         })
             .then((response) => {

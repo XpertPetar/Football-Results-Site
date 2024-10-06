@@ -1,4 +1,3 @@
-import { corsProxyUrl } from "../Global";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { differenceInYears } from "date-fns";
@@ -13,9 +12,9 @@ export default function Team() {
     const [fixtures, setFixtures] = useState();
 
     useEffect(() => {
-        const url = `${corsProxyUrl}api/teams/${id}`;
+        const url = `/api/footballApiProxy?endpoint=teams/${id}`;
 
-        fetch(`/api/footballApiProxy?endpoint=teams/${id}`, {
+        fetch(url, {
             method: "GET"
         })
             .then((response) => {
@@ -27,10 +26,10 @@ export default function Team() {
             })
             .catch((error) => console.error("Fetch error:", error));
 
-        const fixturesUrl = `${corsProxyUrl}api/teams/${id}/matches`;
+        const fixturesUrl = `/api/footballApiProxy?endpoint=teams/${id}/matches`;
 
         const timeout = setTimeout(() => {
-            fetch(`/api/footballApiProxy?endpoint=teams/${id}/matches`, {
+            fetch(fixturesUrl, {
                 method: "GET"
             })
                 .then((response) => {
@@ -47,7 +46,6 @@ export default function Team() {
         return differenceInYears(new Date(), new Date(dateOfBirth));
     }
 
-    // Dummy fixtures data
     const dummyFixtures = [
         {
             id: 1,

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { apiKey, apiUrl, corsProxyUrl } from "../Global";
 import "../App.css";
 import { format, addDays, subDays } from "date-fns";
 import { Link } from "react-router-dom";
@@ -17,16 +16,9 @@ export default function Matches() {
 
     useEffect(() => {
         setLoading(true);
-        const urlCors = `${corsProxyUrl}api/matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
-        const url = `${apiUrl}matches/?dateFrom=${date}&dateTo=${dayAfterDate}`;
-        fetch(`/api/footballApiProxy?endpoint=matches&dateFrom=${date}&dateTo=${dayAfterDate}`, {
-            method: "GET",
-            headers: {
-                "X-Auth-Token": apiKey,
-                "X-Unfold-Lineups": true,
-                "X-Unfold-Goals": true
-            }
-        })
+        const url = `/api/footballApiProxy?endpoint=matches&dateFrom=${date}&dateTo=${dayAfterDate}`;
+
+        fetch(url)
             .then((response) => {
                 return response.json();
             })

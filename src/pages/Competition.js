@@ -1,6 +1,5 @@
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { apiUrl, apiKey, corsProxyUrl } from "../Global";
 import { Link } from "react-router-dom";
 
 export default function Competition() {
@@ -12,8 +11,8 @@ export default function Competition() {
     const leagueName = query.get("name");
 
     useEffect(() => {
-        const url = `${corsProxyUrl}api/competitions/${id}/standings/`;
-        fetch(`/api/footballApiProxy?endpoint=competitions/${id}/standings`, {
+        const url = `/api/footballApiProxy?endpoint=competitions/${id}/standings`;
+        fetch(url, {
             method: "GET"
         })
             .then((response) => {
