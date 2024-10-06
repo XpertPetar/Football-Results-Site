@@ -13,7 +13,7 @@ export default function Competition() {
 
     useEffect(() => {
         const url = `${corsProxyUrl}api/competitions/${id}/standings/`;
-        fetch(`/api/footballApiProxy?endpoint=competitions/${id}/standings/`, {
+        fetch(`/api/footballApiProxy?endpoint=competitions/${id}/standings`, {
             method: "GET"
         })
             .then((response) => {
